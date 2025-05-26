@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Fundamentals Exam Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfaf6; color: #333; }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active { background-color: #3b82f6; color: white; }
+        .tab-button:hover:not(.active) { background-color: #dbeafe; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .card h2 { color: #1e3a8a; margin-bottom: 1rem; font-size: 1.75rem; }
+        .card h3 { color: #1d4ed8; margin-bottom: 0.75rem; font-size: 1.25rem; margin-top: 1.5rem; }
+        .card h4 { color: #1e40af; margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 600; margin-top: 1rem; }
+        .table-interactive tbody tr { cursor: pointer; }
+        .table-interactive tbody tr:hover { background-color: #eff6ff; }
+        .details-row { display: none; background-color: #f9fafb; }
+        .details-row.visible { display: table-row; }
+        .details-row td { padding: 0.75rem 1rem; border-top: 1px solid #e5e7eb; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 450px; padding: 1rem; background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .module-tab-button { transition: all 0.3s ease; border-bottom: 2px solid transparent; padding-bottom: 0.5rem; margin-bottom: -2px;}
+        .module-tab-button.active { border-color: #3b82f6; color: #3b82f6; font-weight: 600; }
+        .module-tab-button:hover:not(.active) { border-color: #93c5fd; }
+        .module-content { display: none; padding-top: 1rem;}
+        .module-content.active { display: block; }
+        .question-list { list-style-type: decimal; margin-left: 1.5rem; }
+        .question-list li { margin-bottom: 0.75rem; }
+        .citation-info { font-size: 0.75rem; color: #4b5563; margin-left: 0px; display: block; margin-top: 0.1rem; margin-bottom: 0.75rem;}
+        .qa-link { display: inline-block; margin: 0.5rem; padding: 0.75rem 1.5rem; background-color: #2563eb; color: white; border-radius: 0.375rem; text-decoration: none; transition: background-color 0.3s ease; font-weight: 500; }
+        .qa-link:hover { background-color: #1d4ed8; }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #fdfaf6; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-[#1e3a8a]">Digital Fundamentals (3130704) Exam Analysis</h1>
+            <p class="text-md text-gray-600 mt-2">Interactive Insights for Strategic Preparation for "Digital Fundamentals (3130704)"  by "Tejash Karn"</p>
+        </header>
+
+        <nav class="mb-8 bg-white shadow-md rounded-lg p-2">
+            <ul class="flex flex-wrap justify-center gap-2">
+                <li><button data-tab="overview" class="tab-button active text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Overview</button></li>
+                <li><button data-tab="syllabus" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Syllabus & COs</button></li>
+                <li><button data-tab="examInsights" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Exam Insights</button></li>
+                <li><button data-tab="topicHotspots" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Topic Hotspots</button></li>
+                <li><button data-tab="moduleDeepDive" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Module Deep Dive</button></li>
+                <li><button data-tab="detailedQA" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Detailed Q&A</button></li>
+                <li><button data-tab="studyStrategies" class="tab-button text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2 rounded-md font-medium">Study Strategies</button></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="overview" class="content-section active card">
+                <h2>Overview</h2>
+                <p class="text-gray-700 mb-4">This interactive application provides a comprehensive analysis of previous years' examination papers for "Digital Fundamentals" (3130704). Its goal is to help you understand exam patterns, identify frequently tested topics, and strategize your preparation effectively. Navigate through the sections to explore key insights derived from the detailed report.</p>
+                <details class="bg-blue-50 p-4 rounded-md">
+                    <summary class="font-semibold text-blue-700 cursor-pointer">Executive Summary Highlights</summary>
+                    <div class="mt-2 text-gray-700 space-y-2">
+                        <p>The analysis reveals a consistent exam structure (5 questions, 3-4-7 mark distribution, 70 marks total) with a strong emphasis on design-oriented questions in combinational and sequential logic.</p>
+                        <p><strong>Key High-Frequency Topics:</strong> Karnaugh Map (K-Map) minimization, synchronous counter design, R-2R Ladder DACs, Successive Approximation ADCs, and Boolean function implementation using PLDs (e.g., PLAs).</p>
+                        <p><strong>Foundational Concepts:</strong> De Morgan's theorems, number system conversions, universal gate implementations, and logic family characteristics are consistently tested, often in Q.1.</p>
+                        <p>Modules 2 (Combinational Circuits) and 3 (Sequential Circuits) are particularly important due to their design-intensive nature.</p>
+                        <p>Strategic preparation should focus on mastering core design skills, fundamental concepts, and specific ADC/DAC/PLD problem types.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section id="syllabus" class="content-section card">
+                <h2>Syllabus & Course Outcomes (COs)</h2>
+                <p class="text-gray-700 mb-4">This section outlines the official syllabus structure for Digital Fundamentals (3130704), including the modular breakdown, key topics within each module, their official weightage, and alignment with Course Outcomes. Understanding the syllabus is the first step towards targeted preparation.</p>
+                
+                <h3>Modular Structure and Content</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Module No.</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Module Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Topics (Summary)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Official % Weightage</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevant COs</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr><td class="px-6 py-4">1</td><td class="px-6 py-4">Fundamentals of Digital Systems & logic families</td><td class="px-6 py-4">Number systems, Boolean algebra, logic gates, codes, logic families (TTL, CMOS)</td><td class="px-6 py-4">20%</td><td class="px-6 py-4">CO-1, CO-2</td></tr>
+                            <tr><td class="px-6 py-4">2</td><td class="px-6 py-4">Combinational Digital Circuits</td><td class="px-6 py-4">K-maps, MUX/DEMUX, Adders, Comparators, Code Converters, ALU, Q-M method</td><td class="px-6 py-4">20%</td><td class="px-6 py-4">CO-3</td></tr>
+                            <tr><td class="px-6 py-4">3</td><td class="px-6 py-4">Sequential circuits and systems</td><td class="px-6 py-4">Latches, Flip-Flops (SR, JK, D, T), Shift Registers, Counters (Async/Sync)</td><td class="px-6 py-4">20%</td><td class="px-6 py-4">CO-3</td></tr>
+                            <tr><td class="px-6 py-4">4</td><td class="px-6 py-4">A/D and D/A Converters</td><td class="px-6 py-4">Weighted resistor, R-2R Ladder DACs; Successive approximation, Dual slope ADCs; Specifications</td><td class="px-6 py-4">20%</td><td class="px-6 py-4">CO-4</td></tr>
+                            <tr><td class="px-6 py-4">5</td><td class="px-6 py-4">Semiconductor memories & Programmable logic devices</td><td class="px-6 py-4">RAM, ROM, Memory organization, PLA, PAL, CPLD, FPGA</td><td class="px-6 py-4">20%</td><td class="px-6 py-4">CO-5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Course Outcomes (COs) & Weightage</h3>
+                 <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li><strong>CO-1:</strong> Solve the given problem using fundamentals of Number systems and Boolean algebra (10% weightage).</li>
+                    <li><strong>CO-2:</strong> Analyze working of logic families and logic gates and design the simple circuits using various gates for a given problem (10% weightage).</li>
+                    <li><strong>CO-3:</strong> Design and implement Combinational and Sequential logic circuits and verify its working (40% weightage).</li>
+                    <li><strong>CO-4:</strong> Examine the process of Analog to Digital conversion and Digital to Analog conversion (20% weightage).</li>
+                    <li><strong>CO-5:</strong> Implement PLDs for the given logical problem (20% weightage).</li>
+                </ul>
+                <p class="mt-3 text-sm text-gray-600">The significant 40% weightage for CO-3 highlights the importance of mastering combinational and sequential circuit design (Modules 2 & 3).</p>
+            </section>
+
+            <section id="examInsights" class="content-section card">
+                <h2>Exam Insights</h2>
+                <p class="text-gray-700 mb-4">This section provides an overview of the general examination structure and patterns observed in previous year question papers (PYQs). Familiarizing yourself with the exam format can help reduce anxiety and improve time management during the actual test.</p>
+                
+                <h3>General Examination Structure</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+                    <li><strong>Total Marks:</strong> 70 marks.</li>
+                    <li><strong>Total Questions:</strong> 5 main questions (Q.1 to Q.5).</li>
+                    <li><strong>Sub-parts per Question:</strong> Each main question has three sub-parts: (a), (b), and (c).</li>
+                    <li><strong>Mark Distribution:</strong> Typically 03 marks for (a), 04 marks for (b), and 07 marks for (c), totaling 14 marks per main question.</li>
+                    <li><strong>"OR" Choices:</strong> Predominantly offered for the 7-mark sub-question (part c) in Q.2, Q.3, Q.4, and Q.5. Question Q.1 (fundamentals) usually has no "OR" choice and is compulsory.</li>
+                </ul>
+
+                <h3>Noteworthy Variation: Winter 2020</h3>
+                <p class="text-gray-700 text-sm">The Winter 2020 exam was an exception: 56 marks total, "Attempt any FOUR out of EIGHT questions." This was likely a temporary adjustment. Students should primarily prepare for the standard 70-mark, "attempt all questions" format.</p>
+
+                <h3>Consistency in Instructions</h3>
+                <p class="text-gray-700 text-sm">Standard instructions like "Make suitable assumptions," "Figures to the right indicate full marks," and "Simple non-programmable scientific calculators are allowed" are consistent across papers.</p>
+            </section>
+
+            <section id="topicHotspots" class="content-section card">
+                <h2>Topic Hotspots & Weightage Analysis</h2>
+                <p class="text-gray-700 mb-4">Discover the most frequently tested concepts and common themes for high-mark questions. This section also visualizes the comparison between official syllabus weightage and actual mark distribution observed in past exams, helping you focus your study efforts effectively.</p>
+
+                <h3>Top 15 High-Frequency Topics</h3>
+                <p class="text-sm text-gray-600 mb-2">Click on a topic row to see typical question types.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 table-interactive" id="highFrequencyTable">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Topic/Concept</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Primary Module(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm"></tbody>
+                    </table>
+                </div>
+                
+                <h3>Common Themes for 7-Mark Questions</h3>
+                <p class="text-sm text-gray-600 mb-2">Click on a theme row to see an example question snippet.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 table-interactive" id="sevenMarkThemesTable">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Theme</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevant Module(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm"></tbody>
+                    </table>
+                </div>
+
+                <h3>Syllabus Weightage vs. Actual PYQ Mark Distribution</h3>
+                <p class="text-gray-700 mb-4 text-sm">This chart compares the official syllabus weightage for each module against the average percentage of marks these modules actually carried in previous year question papers (PYQs). This can indicate areas that might receive slightly more or less emphasis in practice than officially stated.</p>
+                <div class="chart-container mb-8">
+                    <canvas id="moduleWeightageChart"></canvas>
+                </div>
+
+                <hr class="my-8 border-gray-300">
+
+                <h3 class="text-2xl font-semibold text-center text-indigo-700">Frequently Asked Questions by Mark Weightage</h3>
+                <p class="text-xs text-center text-gray-500 mb-6">Citation frequencies and paper mentions are illustrative, based on analysis of the provided syllabus and past papers. S=Summer, W=Winter. These lists aim to provide representative question types per category.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-lg shadow">
+                        <h4 class="text-lg font-semibold text-blue-700 mb-3">Illustrative Top 3-Mark Questions</h4>
+                        <ol class="question-list text-sm text-gray-700" id="top3MarkQuestionsList">
+                        </ol>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg shadow">
+                        <h4 class="text-lg font-semibold text-green-700 mb-3">Illustrative Top 4-Mark Questions</h4>
+                        <ol class="question-list text-sm text-gray-700" id="top4MarkQuestionsList">
+                        </ol>
+                    </div>
+
+                    <div class="bg-purple-50 p-4 rounded-lg shadow">
+                        <h4 class="text-lg font-semibold text-purple-700 mb-3">Illustrative Top 7-Mark Questions</h4>
+                        <ol class="question-list text-sm text-gray-700" id="top7MarkQuestionsList">
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="moduleDeepDive" class="content-section card">
+                <h2>Module-wise Deep Dive</h2>
+                <p class="text-gray-700 mb-4">Explore each syllabus module in detail. This section provides insights into frequently asked topics, common question patterns, and the typical mark allocation for each module based on the analysis of past papers. Select a module below to view its specific analysis.</p>
+                
+                <nav class="mb-6 border-b border-gray-200">
+                    <ul class="flex flex-wrap -mb-px gap-x-4" id="moduleTabs">
+                        <li><button data-module="module1" class="module-tab-button active py-3 px-1 text-sm font-medium text-center text-gray-500 hover:text-gray-700">Module 1</button></li>
+                        <li><button data-module="module2" class="module-tab-button py-3 px-1 text-sm font-medium text-center text-gray-500 hover:text-gray-700">Module 2</button></li>
+                        <li><button data-module="module3" class="module-tab-button py-3 px-1 text-sm font-medium text-center text-gray-500 hover:text-gray-700">Module 3</button></li>
+                        <li><button data-module="module4" class="module-tab-button py-3 px-1 text-sm font-medium text-center text-gray-500 hover:text-gray-700">Module 4</button></li>
+                        <li><button data-module="module5" class="module-tab-button py-3 px-1 text-sm font-medium text-center text-gray-500 hover:text-gray-700">Module 5</button></li>
+                    </ul>
+                </nav>
+
+                <div id="module1Content" class="module-content active space-y-3 text-sm"><h4 class="text-lg font-semibold text-blue-600">Module 1: Fundamentals of Digital Systems and Logic Families</h4><p><strong>Key Syllabus Topics:</strong> Digital signals, basic logic operations, Boolean algebra, IC gates, number systems (binary, octal, hex, signed binary, 1's/2's complement arithmetic), codes (BCD, Gray, Error detecting/correcting - Hamming), characteristics of digital ICs, logic families (TTL, CMOS, Schottky TTL, interfacing, Tri-state).</p><p><strong>Frequency Analysis & Question Types:</strong></p><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li><strong>De Morgan's Theorems:</strong> Extremely common (4 marks), "State and prove...".</li><li><strong>Logic Families & IC Characteristics:</strong> Vary from listing (3 marks) to detailed explanations (7 marks), comparisons (TTL vs. CMOS).</li><li><strong>Number System Conversions:</strong> Very prevalent (often Q1b/c), decimal to other bases and vice-versa, including fractions.</li><li><strong>Binary Arithmetic (2's Complement):</strong> Common for addition/subtraction problems.</li><li><strong>Universal Gates (NAND/NOR):</strong> Staple question (7 marks), implement basic gates or explain universality.</li><li><strong>Codes (BCD, Excess-3, Gray, Hamming):</strong> Conversions or Hamming code construction.</li></ul><p><strong>Importance:</strong> Consistently forms Q.1 (often compulsory 14 marks). Mastery is critical. Assesses CO-1 and CO-2.</p></div>
+                <div id="module2Content" class="module-content space-y-3 text-sm"><h4 class="text-lg font-semibold text-blue-600">Module 2: Combinational Digital Circuits</h4><p><strong>Key Syllabus Topics:</strong> K-map simplification, Don't care conditions, MUX, DEMUX/Decoders, Adders (Half, Full, Parallel, Carry look ahead, Serial), Subtractors, BCD arithmetic, ALU, digital comparator, parity checker/generator, code converters, priority encoders, Q-M method.</p><p><strong>Frequency Analysis & Question Types:</strong></p><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li><strong>K-Map Minimization:</strong> Most frequently tested (3, 4, or 7 marks), 3/4 variables, don't-cares.</li><li><strong>Code Converters:</strong> Common 7-mark design (Binary to BCD, BCD to Excess-3, etc.).</li><li><strong>Adders/Subtractors:</strong> Design/explanation of half/full/parallel adders.</li><li><strong>Comparators:</strong> Design of 1-bit or 2-bit magnitude comparators (often 7 marks).</li><li><strong>Multiplexers (MUX):</strong> Implement Boolean functions using MUX.</li><li><strong>Decoders:</strong> Explanation or implementation using decoders.</li><li><strong>Parity Generator/Checker:</strong> Design appears periodically.</li></ul><p><strong>Importance:</strong> Heavyweight module, many 7-mark design questions. Mastery of K-maps is non-negotiable. Aligns with CO-3 (40% weightage).</p></div>
+                <div id="module3Content" class="module-content space-y-3 text-sm"><h4 class="text-lg font-semibold text-blue-600">Module 3: Sequential circuits and systems</h4><p><strong>Key Syllabus Topics:</strong> Latches, Flip-Flops (SR, JK, D, T), applications, Shift Registers (SISO, SIPO, PISO, PIPO, universal), applications (ring counter, sequence generator), Counters (ripple/asynchronous, synchronous, design using FFs).</p><p><strong>Frequency Analysis & Question Types:</strong></p><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li><strong>Flip-Flops (JK, D, T, SR):</strong> Detailed explanations, characteristic/excitation tables, conversions between FF types.</li><li><strong>Race-Around Condition:</strong> Very important (often 7 marks), explanation and solution (Master-Slave JK FF).</li><li><strong>Counter Design (Synchronous):</strong> Most prevalent 7-mark question, design for specific sequences (BCD, custom) using JK/T FFs. Involves state diagrams, K-maps, circuit.</li><li><strong>Counter Design (Asynchronous/Ripple):</strong> Design/explanation for various moduli.</li><li><strong>Shift Registers:</strong> Explanation of types, applications, design of ring/Johnson counters.</li><li><strong>Comparison:</strong> Synchronous vs. Asynchronous counters.</li></ul><p><strong>Importance:</strong> Extremely critical, especially for 7-mark questions (synchronous counter design is dominant). Strong alignment with CO-3 (40% weightage).</p></div>
+                <div id="module4Content" class="module-content space-y-3 text-sm"><h4 class="text-lg font-semibold text-blue-600">Module 4: A/D and D/A Converters</h4><p><strong>Key Syllabus Topics:</strong> D/A Converters (weighted resistor, R-2R Ladder, specifications), Sample and Hold circuit, A/D Converters (parallel comparator, successive approximation, counting, dual slope, V/F, V/T conversion, specifications).</p><p><strong>Frequency Analysis & Question Types:</strong></p><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li><strong>R-2R Ladder D/A Converter:</strong> Very common explanation with diagram (4 or 7 marks).</li><li><strong>Successive Approximation A/D Converter:</strong> Highly frequent explanation with diagram (7 marks).</li><li><strong>Specifications of D/A or A/D Converters:</strong> Definitions and calculations (resolution, settling time, etc.).</li><li><strong>Other A/D or D/A Types:</strong> Binary-weighted resistor DAC, dual-slope ADC also appear.</li><li><strong>General Classification/Types:</strong> Sometimes asked.</li></ul><p><strong>Importance:</strong> Typically populates Q.5 and parts of Q.4. R-2R DAC and Successive Approximation ADC are cornerstone 7-mark questions. Aligns with CO-4 (20% weightage).</p></div>
+                <div id="module5Content" class="module-content space-y-3 text-sm"><h4 class="text-lg font-semibold text-blue-600">Module 5: Semiconductor memories and Programmable logic devices</h4><p><strong>Key Syllabus Topics:</strong> Memory organization, expanding memory, classification/characteristics (ROM, RAM - SRAM/DRAM, CAM, CCD), memory chips, ROM as PLD, PLA, PAL, CPLDs, FPGA.</p><p><strong>Frequency Analysis & Question Types:</strong></p><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li><strong>RAM (SRAM vs. DRAM):</strong> Very frequent comparison (3 or 4 marks).</li><li><strong>ROM Types:</strong> Explanation of MROM, PROM, EPROM, EEPROM.</li><li><strong>PLA Implementation/Design:</strong> Common 7-mark question, implement Boolean functions.</li><li><strong>PAL Implementation/Design:</strong> Similar to PLA, appears less frequently.</li><li><strong>PROM Implementation:</strong> Another variant for implementing functions.</li><li><strong>Memory Organization/Expansion:</strong> Questions on internal structure or expanding memory size.</li><li><strong>FPGA/CPLD/PLD Overview:</strong> Short notes or explanations.</li></ul><p><strong>Importance:</strong> Frequently contributes 7-mark questions (PLA/PAL/PROM implementations). Aligns with CO-5 (20% weightage).</p></div>
+            </section>
+
+            <section id="detailedQA" class="content-section card">
+                <h2>Detailed Q&A Access</h2>
+                <p class="text-gray-700 mb-4">For comprehensive, detailed answers to frequently asked questions, categorized by mark weightage, please visit our dedicated Q&A pages:</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+                    <a href="7_marks_question.html" class="qa-link">View 7-Mark Q&A</a>
+                    <a href="4_marks_questions.html" class="qa-link">View 4-Mark Q&A</a>
+                    <a href="3_marks_question.html" class="qa-link">View 3-Mark Q&A</a>
+
+                </div>
+                <p class="text-center text-gray-500 mt-6 text-sm">(Click on the button to go to questions and answers of your choice.)</p>
+            </section>
+
+            <section id="studyStrategies" class="content-section card">
+                <h2>Strategic Recommendations for Exam Preparation</h2>
+                <p class="text-gray-700 mb-4">This section provides actionable advice to help you prepare effectively for the Digital Fundamentals exam, based on the analysis of past papers and syllabus requirements. Adopting these strategies can significantly improve your performance.</p>
+                <div class="space-y-4 text-sm">
+                    <div><h3>A. Prioritize Based on Frequency and Mark Weightage:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Concentrate on the "Top 15 High-Frequency Topics."</li><li>Master common themes for 07-mark questions (synchronous counter design, code converters, PLA/PAL/PROM implementations, R-2R DAC, Successive Approximation ADC, Master-Slave JK flip-flops).</li></ul></div>
+                    <div><h3>B. Adopt a Balanced Approach to Modules:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Modules 2 & 3 are critical for design questions, but don't neglect Module 1 fundamentals (often in compulsory Q.1).</li><li>Modules 4 & 5 have specific, recurring high-value questions; focused preparation here yields good marks.</li></ul></div>
+                    <div><h3>C. Practice, Practice, Practice:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Extensive problem-solving for K-map minimization (4 variables, don't-cares).</li><li>Numerous examples of synchronous counter design.</li><li>Design various code converters and magnitude comparators.</li><li>Repeatedly draw and explain R-2R DACs, Successive Approximation ADCs, Master-Slave JK FFs.</li><li>Solve multiple PLA/PAL/PROM implementation problems.</li></ul></div>
+                    <div><h3>D. Understand Concepts, Don't Just Memorize:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Strive for deep conceptual understanding of topics like race-around condition, logic family characteristics, ADC/DAC specs. Focus on *why* and *how*.</li></ul></div>
+                    <div><h3>E. Time Management Strategy for the Exam:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Be mindful of 03-04-07 mark distribution; allocate time proportionally.</li><li>Attempt Q.1 accurately and relatively quickly.</li><li>For 7-mark designs, show all steps clearly: truth tables, K-maps, expressions, diagrams.</li></ul></div>
+                    <div><h3>F. Utilize "OR" Choices Strategically (but Cautiously):</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Be prepared for all major topics within a module, as choices often test different facets of the same core concept.</li><li>Q.5 "OR" choice (Module 4 vs. Module 5) might offer a more distinct strategic option if one area is weaker, but proficiency in both is safest.</li></ul></div>
+                    <div><h3>G. Refer to the Syllabus and Course Outcomes:</h3><ul class="list-disc list-inside ml-4 text-gray-600 space-y-1"><li>Keep syllabus and COs in mind. Understand which skills (analysis, design, application) are being assessed.</li></ul></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500">Exam help guide for "Digital Fundamentals (3130704)" created by "Tejash Karn (L.D College of Engineering)".</p>
+        </footer>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const contentSections = document.querySelectorAll('.content-section');
+        const moduleTabButtons = document.querySelectorAll('.module-tab-button');
+        const moduleContents = document.querySelectorAll('.module-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                button.classList.add('active');
+                const targetTab = document.getElementById(button.dataset.tab);
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        moduleTabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                moduleTabButtons.forEach(btn => btn.classList.remove('active'));
+                moduleContents.forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                const targetModule = document.getElementById(button.dataset.module + 'Content');
+                if (targetModule) {
+                    targetModule.classList.add('active');
+                }
+            });
+        });
+        
+        const highFrequencyData = [
+            { rank: 1, topic: "K-Map Minimization (3 & 4 variables, incl. don't cares)", module: "2", details: "Numerical minimization, part of design problems" }, { rank: 2, topic: "Synchronous Counter Design", module: "3", details: "Design for specific sequence (e.g., BCD, custom) using JK/T FFs (7 marks)" }, { rank: 3, topic: "R-2R Ladder D/A Converter", module: "4", details: "Explanation with diagram (4 or 7 marks)" }, { rank: 4, topic: "Successive Approximation A/D Converter", module: "4", details: "Explanation with diagram (7 marks)" }, { rank: 5, topic: "De Morgan's Theorems", module: "1", details: "State and prove with truth tables (4 marks)" }, { rank: 6, topic: "Universal Gate Implementation (NAND/NOR)", module: "1", details: "Implement basic gates (AND, OR, EX-OR) or expressions (7 marks)" }, { rank: 7, topic: "SRAM vs. DRAM Comparison", module: "5", details: "Differentiate (3 or 4 marks)" }, { rank: 8, topic: "PLA Implementation", module: "5", details: "Implement Boolean functions using PLA (7 marks)" }, { rank: 9, topic: "Code Converter Design (e.g., BCD-Excess3, Bin-BCD)", module: "2", details: "Design with truth table, K-maps, circuit diagram (7 marks)" }, { rank: 10, topic: "JK Flip-Flop (incl. Race-Around & Master-Slave)", module: "3", details: "Explanation, characteristic/excitation tables, race-around solution (4 or 7 marks)" }, { rank: 11, topic: "Number System Conversions", module: "1", details: "Decimal to Bin/Oct/Hex & vice-versa, fractions (4 marks)" }, { rank: 12, topic: "Characteristics of Logic Families / Digital ICs", module: "1", details: "List/explain properties (fan-in, noise margin, etc.), compare TTL/CMOS (3, 4 or 7 marks)" }, { rank: 13, topic: "Parallel Adders (e.g., 4-bit)", module: "2", details: "Explanation with diagram, design of Full Adder (4 or 7 marks)" }, { rank: 14, topic: "Magnitude Comparator Design (1-bit or 2-bit)", module: "2", details: "Design with truth table, K-maps, circuit diagram (4 or 7 marks)" }, { rank: 15, topic: "ROM Types (MROM, PROM, EPROM, EEPROM)", module: "5", details: "Explain types (3 or 4 marks)" }
+        ];
+
+        const sevenMarkThemesData = [
+            { theme: "Synchronous Counter Design", module: "3", details: "Design a Synchronous counter with the following binary sequence: 0, 1, 3, 4,5, 7 and repeat. Use T - flip-flops" }, { theme: "Combinational Circuit Design (Code Converters)", module: "2", details: "Design a Combinational circuit that convert Binary to BCD code converter." }, { theme: "Combinational Circuit Design (Comparators)", module: "2", details: "Design 2 Bit Magnitude Comparator." }, { theme: "Implementation using PLDs (PLA/PAL/PROM)", module: "5", details: "Implement the circuit with a PLA having 3 inputs, 3 product term & 2 outputs." }, { theme: "Detailed Explanation of Complex Circuits/Concepts", module: "3", details: "Write a brief note on race around condition and its solution. Draw & explain...master-slave JK flip-flop." }, { theme: "Detailed Explanation of ADC/DAC Architectures", module: "4", details: "Explain Successive Approximation type A/D converter. OR Explain the working of R-2R ladder type D/A converter." }, { theme: "Universal Gate Implementation (Complex)", module: "1", details: "Implement AND, OR, EX-OR gates using NAND & NOR gates." }, { theme: "Characteristics of Digital ICs / Logic Families (Detailed)", module: "1", details: "Explain the characteristics of Digital ICs." }
+        ];
+
+        function populateTable(tableId, data) {
+            const tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+            if (!tableBody) return; // Guard clause
+            tableBody.innerHTML = ''; 
+            data.forEach(item => {
+                const row = tableBody.insertRow();
+                row.insertCell().textContent = item.rank || item.theme;
+                row.insertCell().textContent = item.topic || item.module; 
+                if (item.rank) row.insertCell().textContent = item.module;
+
+                const detailsRow = tableBody.insertRow();
+                detailsRow.classList.add('details-row');
+                const detailsCell = detailsRow.insertCell();
+                detailsCell.colSpan = item.rank ? 3 : 2;
+                detailsCell.innerHTML = `<p class="text-xs text-indigo-700"><strong>Typical Question Type/Example:</strong> ${item.details}</p>`;
+
+                row.addEventListener('click', () => {
+                    detailsRow.classList.toggle('visible');
+                });
+            });
+        }
+        
+        populateTable('highFrequencyTable', highFrequencyData);
+        populateTable('sevenMarkThemesTable', sevenMarkThemesData);
+
+        const top3MarkQuestionsData = [ { text: "List out various logic families. Also list characteristics of digital IC.", frequency: 3, papers: ["S2024", "W2023", "S2022"] }, { text: "What is race around condition in JK flip flop?", frequency: 4, papers: ["W2024", "S2024 (OR)", "W2021", "W2019 (OR)"] }, { text: "Compare static RAM and dynamic RAM.", frequency: 3, papers: ["S2024", "W2024", "W2023"] }, { text: "Reduce a given Boolean expression (e.g., F=x'y'z+yz+xz).", frequency: 2, papers: ["S2024", "W2023"] }, { text: "Explain SR flip-flop using characteristic table & characteristic equation.", frequency: 2, papers: ["W2022", "W2019"] }, { text: "Explain the specification of D/A converter.", frequency: 2, papers: ["S2024 (OR)", "W2019"] }, { text: "Define Minterm and Maxterm.", frequency: 1, papers: ["S2022 (OR)"] }, { text: "What are universal gates? Name them.", frequency: 3, papers: ["S2023", "W2022", "S2021"] }, { text: "Define Fan-in and Fan-out.", frequency: 2, papers: ["W2024", "S2023"] }, { text: "Convert a given binary number to its decimal equivalent.", frequency: 3, papers: ["S2024", "W2023", "W2022"] }, { text: "What is a multiplexer (MUX)?", frequency: 2, papers: ["S2023", "W2021"] }, { text: "List applications of counters.", frequency: 1, papers: ["S2022"] }, { text: "What is Gray code? Give an example.", frequency: 2, papers: ["W2024", "S2023"] }, { text: "Draw the logic symbol and truth table for an AND gate.", frequency: 1, papers: ["W2022"] }, { text: "Define propagation delay in logic gates.", frequency: 2, papers: ["S2024", "W2021"] }, { text: "What is a decoder?", frequency: 1, papers: ["S2023"] }, { text: "List types of shift registers.", frequency: 2, papers: ["W2024", "S2022"] }, { text: "What is meant by 'volatile memory'?", frequency: 1, papers: ["W2023"] }, { text: "Give the difference between combinational and sequential circuits.", frequency: 2, papers: ["S2024", "W2022"] }, { text: "What is a BCD code? Represent decimal 7 in BCD.", frequency: 2, papers: ["S2023", "W2021"] } ];
+        const top4MarkQuestionsData = [ { text: "State and prove De-Morgan's theorems using truth-tables.", frequency: 5, papers: ["S2024", "W2024", "W2023", "W2020", "W2019"] }, { text: "Convert a given decimal Number to base 4 and base 8 (e.g., 330.5).", frequency: 3, papers: ["S2024", "W2023", "S2022 (similar)"] }, { text: "Explain 4-bit parallel adder with diagram.", frequency: 3, papers: ["S2024", "W2023", "W2019 (OR)"] }, { text: "Explain JK flip flop with its characteristic table and excitation table.", frequency: 2, papers: ["S2024", "W2023"] }, { text: "Explain R-2R ladder type D/A converter.", frequency: 4, papers: ["S2024", "W2023", "W2022 (OR)", "W2019"] }, { text: "Minimize a Boolean function using K-map (4 variables, with don't cares).", frequency: 4, papers: ["S2024 (OR)", "W2023 (OR)", "W2020", "S2023"] }, { text: "Explain the working of SISO (Serial-In, Serial-Out) shift register.", frequency: 2, papers: ["S2024 (OR)", "W2019"] }, { text: "Compare TTL and CMOS logic families (at least 4 points).", frequency: 3, papers: ["W2024", "S2023", "W2021"] }, { text: "Design a Full Adder circuit using basic gates (show truth table, K-maps, circuit).", frequency: 2, papers: ["S2023", "W2022"] }, { text: "Explain different types of ROM (MROM, PROM, EPROM, EEPROM).", frequency: 3, papers: ["W2024", "S2022", "W2020"] }, { text: "Implement a given Boolean function using a 4:1 MUX.", frequency: 2, papers: ["S2023", "W2021"] }, { text: "Explain the working of a D flip-flop with logic diagram and timing diagram.", frequency: 2, papers: ["W2024", "S2022"] }, { text: "Draw and explain a 1-bit magnitude comparator.", frequency: 2, papers: ["S2023", "W2020"] }, { text: "Convert a given SOP expression to its canonical POS form.", frequency: 1, papers: ["W2023"] }, { text: "Explain Hamming code with an example for single-bit error correction.", frequency: 2, papers: ["S2024", "W2022"] }, { text: "Design a half subtractor circuit with truth table and logic diagram.", frequency: 2, papers: ["W2024", "S2023"] }, { text: "Explain the operation of a Tri-state buffer and its application.", frequency: 1, papers: ["W2021"] }, { text: "What is a ring counter? Explain its working with a diagram for 3 bits.", frequency: 2, papers: ["S2024", "W2020"] }, { text: "Explain weighted resistor D/A converter with its limitations.", frequency: 2, papers: ["S2023", "W2022"] }, { text: "Draw and explain the block diagram of a generic Arithmetic Logic Unit (ALU).", frequency: 1, papers: ["W2024"] } ];
+        const top7MarkQuestionsData = [ { id: "q7_1", text: "Design a Synchronous counter for a given binary sequence (e.g., 0-1-3-7-6-4-0 or BCD) using T-flip-flops / JK-flip-flops.", frequency: 4, papers: ["S2024 (OR)", "W2023 (OR)", "S2021", "W2019"] }, { id: "q7_2", text: "Design a Combinational circuit that converts Binary to BCD (or BCD to Excess-3, or Gray to Binary).", frequency: 4, papers: ["S2024", "S2024 (OR)", "W2023", "W2023 (OR)", "W2021"] }, { id: "q7_3", text: "Explain Successive Approximation type A/D converter with a neat block diagram and working principle.", frequency: 4, papers: ["W2024 (OR)", "S2023 (OR)", "W2021", "W2019"] }, { id: "q7_4", text: "Implement given Boolean functions using a PLA (Programmable Logic Array) or PAL.", frequency: 4, papers: ["S2024", "W2023", "W2021 (OR)", "W2019 (OR)"] }, { id: "q7_5", text: "Write a detailed note on race around condition in JK flip-flops and how it is overcome using a Master-Slave JK flip-flop. Draw necessary diagrams.", frequency: 4, papers: ["S2024", "W2023", "S2022 (OR)", "W2020"] }, { id: "q7_6", text: "Implement basic logic gates (AND, OR, NOT, EX-OR) using only NAND gates (or only NOR gates). Explain universality.", frequency: 3, papers: ["S2024", "W2023", "W2019"] }, { id: "q7_7", text: "Design a 2-Bit or 3-Bit Magnitude Comparator circuit. Show truth table, K-maps, and logic diagram.", frequency: 3, papers: ["S2024", "W2023", "S2022"] }, { id: "q7_8", text: "Implement a given Boolean function (e.g., F(A,B,C,D) = Σm(...)) using an 8x1 MUX (or appropriate MUX).", frequency: 3, papers: ["S2024", "W2023 (OR)", "S2022"] }, { id: "q7_9", text: "Explain the working of an R-2R Ladder D/A converter with a neat diagram and derive its output voltage equation.", frequency: 3, papers: ["W2024", "S2023", "W2020"] }, { id: "q7_10", text: "Design a 4-bit synchronous BCD counter using JK flip-flops.", frequency: 2, papers: ["S2023", "W2021 (OR)"] }, { id: "q7_11", text: "Explain the characteristics of digital ICs in detail (Propagation delay, Power dissipation, Noise margin, Fan-in, Fan-out, Figure of Merit).", frequency: 2, papers: ["W2024", "S2022"] }, { id: "q7_12", text: "Design a 3-bit synchronous UP/DOWN counter using T flip-flops.", frequency: 2, papers: ["S2024 (OR)", "W2022"] }, { id: "q7_13", text: "Explain the working of a Universal Shift Register with a neat block diagram and mode control.", frequency: 2, papers: ["W2024 (OR)", "S2023"] }, { id: "q7_14", text: "Implement a full adder circuit using two half adders and an OR gate. Draw the detailed circuit.", frequency: 2, papers: ["S2023 (OR)", "W2021"] }, { id: "q7_15", text: "Explain the operation of a dual-slope A/D converter with a block diagram and waveforms.", frequency: 2, papers: ["S2024 (OR)", "W2022 (OR)"] }, { id: "q7_16", text: "Design a circuit to implement a given state diagram using D flip-flops (or JK flip-flops).", frequency: 1, papers: ["S2023"] }, { id: "q7_17", text: "Compare different logic families (TTL, CMOS, ECL) based on various parameters in detail.", frequency: 1, papers: ["W2023"] }, { id: "q7_18", text: "Explain memory organization and how to expand memory capacity (e.g., 1Kx8 to 2Kx8) and word size (e.g., 1Kx4 to 1Kx8) using memory chips.", frequency: 1, papers: ["S2022"] }, { id: "q7_19", text: "Design a MOD-5 synchronous counter using D flip-flops.", frequency: 1, papers: ["W2024"] }, { id: "q7_20", text: "Simplify the Boolean function F(W,X,Y,Z) = Σm(...) + d(...) using Quine-McCluskey method.", frequency: 1, papers: ["S2023 (OR)"] } ];
+
+        function populateQuestionList(listId, data) {
+            const listElement = document.getElementById(listId);
+            if (!listElement) return; // Guard clause
+            listElement.innerHTML = ''; 
+            data.forEach(q => {
+                const listItem = document.createElement('li');
+                listItem.textContent = q.text;
+                const citationSpan = document.createElement('span');
+                citationSpan.className = 'citation-info';
+                citationSpan.textContent = `(Illustrative Frequency: ~${q.frequency}, Example Papers: ${q.papers.join(', ')})`;
+                listItem.appendChild(citationSpan);
+                listElement.appendChild(listItem);
+            });
+        }
+
+        populateQuestionList('top3MarkQuestionsList', top3MarkQuestionsData);
+        populateQuestionList('top4MarkQuestionsList', top4MarkQuestionsData);
+        populateQuestionList('top7MarkQuestionsList', top7MarkQuestionsData);
+        
+        const ctx = document.getElementById('moduleWeightageChart');
+        if (ctx) { 
+            const moduleWeightageChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Module 1', 'Module 2', 'Module 3', 'Module 4', 'Module 5'],
+                    datasets: [{
+                        label: 'Official Syllabus Weightage (%)',
+                        data: [20, 20, 20, 20, 20],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)', 
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Average Actual % in PYQs (Approx.)',
+                        data: [23, 25, 25, 18, 18], 
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)', 
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Percentage Weightage' }, ticks: { callback: function(value) { return value + "%"; } } },
+                        x: { title: { display: true, text: 'Syllabus Modules' } }
+                    },
+                    plugins: { legend: { position: 'top', }, tooltip: { callbacks: { label: function(context) { let label = context.dataset.label || ''; if (label) { label += ': '; } if (context.parsed.y !== null) { label += context.parsed.y + '%'; } return label; } } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuart' }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

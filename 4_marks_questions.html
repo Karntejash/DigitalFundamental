@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Fundamentals - Detailed 4-Mark Q&A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fdfaf6; color: #333; line-height: 1.7; }
+        .container { max-width: 900px; margin-left: auto; margin-right: auto; padding: 1rem 2rem 2rem 2rem; }
+        header h1 { color: #1e3a8a; font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center; }
+        header p.subtitle {text-align: center; color: #4b5563; margin-bottom: 2rem; font-size:0.9rem;}
+        h2 { color: #1d4ed8; font-size: 1.75rem; font-weight:600; margin-top: 2.5rem; margin-bottom:1.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem;}
+        
+        details.qa-block {
+            background-color: white; 
+            border-radius: 0.5rem; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); 
+            margin-bottom: 1.5rem; 
+            border-left: 5px solid #3b82f6;
+            overflow: hidden; /* To contain the summary and content properly */
+        }
+        details.qa-block summary {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e40af;
+            list-style: none; /* Remove default triangle */
+            position: relative;
+            outline: none;
+        }
+        details.qa-block summary::-webkit-details-marker { display: none; } /* Chrome/Safari */
+        details.qa-block summary::before { /* Custom marker */
+            content: '▼';
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            font-size: 0.8em;
+            color: #3b82f6;
+            transition: transform 0.2s ease-in-out;
+        }
+        details.qa-block[open] summary::before {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .answer-container {
+            padding: 0 1.5rem 1.5rem 1.5rem; /* Padding for content inside details */
+        }
+        .citation-info { font-size: 0.8rem; color: #6b7280; display: block; margin-top: 0.25rem; margin-bottom: 1rem; font-style: italic;}
+        .answer-section p, .answer-section ul, .answer-section ol { margin-bottom: 1rem; font-size:0.95rem; }
+        .answer-section ul { list-style-type: disc; margin-left: 1.75rem; }
+        .answer-section ol { list-style-type: decimal; margin-left: 1.75rem; }
+        .answer-section strong { color: #172554; font-weight: 600;}
+        .answer-section table { width: auto; min-width: 70%; margin-top:0.75rem; margin-bottom: 1rem; border-collapse: collapse; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .answer-section th, .answer-section td { border: 1px solid #d1d5db; padding: 0.6rem 0.85rem; text-align: center; vertical-align: middle; }
+        .answer-section th { background-color: #eef2ff; font-weight: 600; color: #1e3a8a;}
+        .answer-section td:first-child {text-align: left;} /* For better readability in comparison tables */
+        .answer-section .code-block { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; margin-bottom: 1rem; font-size: 0.9rem; overflow-x: auto; line-height: 1.5;}
+        .answer-section .diagram-description { background-color: #f0f9ff; border: 1px dashed #93c5fd; border-left: 4px solid #2563eb; padding: 1rem; margin-top: 0.75rem; margin-bottom: 1rem; font-style: italic; color: #0c4a6e; border-radius: 0.25rem;}
+        .answer-section img { max-width: 100%; height: auto; margin-top: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.25rem; display: block; margin-left:auto; margin-right:auto; }
+        .back-link-container { margin-bottom: 2rem; text-align: center;}
+        .back-link { display: inline-block; padding: 0.6rem 1.2rem; background-color: #3b82f6; color: white; border-radius: 0.375rem; text-decoration: none; transition: background-color 0.3s ease; font-weight: 500;}
+        .back-link:hover { background-color: #2563eb; }
+        hr.section-divider { border: none; height: 1px; background-color: #d1d5db; margin: 2rem 0; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <header>
+            <h1>Digital Fundamentals - Detailed Q&A</h1>
+            <p class="subtitle">Comprehensive Answers for 4-Mark Question Themes</p>
+            <div class="back-link-container">
+                <a href="index.html" class="back-link">&larr; Back to Main Analyzer Page</a>
+                </div>
+        </header>
+        
+        <section id="4markAnswersContainer">
+            <h2>4-Mark Question Themes</h2>
+            <p class="text-center text-gray-600 mb-8 text-sm">Detailed explanations for frequently encountered 4-mark question themes. Illustrative frequencies and example paper mentions (S=Summer, W=Winter) are based on analysis of the provided syllabus and past papers.</p>
+
+            <details class="qa-block">
+                <summary>1. State and prove De-Morgan's theorems using truth-tables.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~5, Example Papers: S2024, W2024, W2023, W2020, W2019)</p>
+                    <div class="answer-section">
+                        <p>De Morgan's theorems are two fundamental rules in Boolean algebra that provide a method for negating Boolean expressions involving AND (product) and OR (sum) operations. They are crucial for simplifying logic expressions and for converting between different forms of logic gate implementations (e.g., from AND/OR logic to purely NAND or purely NOR logic).</p>
+                        
+                        <p><strong>Theorem 1: The complement of a product of variables is equal to the sum of their individual complements.</strong></p>
+                        <p>Symbolically, for two variables A and B, this is expressed as:</p>
+                        <p class="code-block">(A ⋅ B)' = A' + B'</p>
+                        <p>This means "NOT (A AND B) is equivalent to (NOT A) OR (NOT B)".</p>
+                        <p><strong>Proof using Truth Table:</strong></p>
+                        <p>To prove this theorem, we construct a truth table that evaluates both the Left-Hand Side (LHS) and the Right-Hand Side (RHS) of the equation for all possible combinations of inputs A and B.</p>
+                        <table>
+                            <thead>
+                                <tr><th>A</th><th>B</th><th>A ⋅ B</th><th>(A ⋅ B)' (LHS)</th><th>A'</th><th>B'</th><th>A' + B' (RHS)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                        <p>As the column for (A ⋅ B)' (LHS) is identical to the column for A' + B' (RHS) for all possible input values, De Morgan's First Theorem is proven.</p>
+                        
+                        <hr class="section-divider"/>
+
+                        <p><strong>Theorem 2: The complement of a sum of variables is equal to the product of their individual complements.</strong></p>
+                        <p>Symbolically, for two variables A and B, this is expressed as:</p>
+                        <p class="code-block">(A + B)' = A' ⋅ B'</p>
+                        <p>This means "NOT (A OR B) is equivalent to (NOT A) AND (NOT B)".</p>
+                        <p><strong>Proof using Truth Table:</strong></p>
+                        <p>Similarly, we construct a truth table evaluating both sides of this equation.</p>
+                        <table>
+                            <thead>
+                                <tr><th>A</th><th>B</th><th>A + B</th><th>(A + B)' (LHS)</th><th>A'</th><th>B'</th><th>A' ⋅ B' (RHS)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                                <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                        <p>As the column for (A + B)' (LHS) is identical to the column for A' ⋅ B' (RHS) for all possible input values, De Morgan's Second Theorem is proven.</p>
+                        <p>These theorems can be extended to more than two variables. For example:
+                        (A ⋅ B ⋅ C)' = A' + B' + C' and (A + B + C)' = A' ⋅ B' ⋅ C'.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>2. Convert a given decimal Number to base 4 and base 8 (e.g., 330.5).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~3, Example Papers: S2024, W2023, S2022 (similar))</p>
+                    <div class="answer-section">
+                        <p>To convert a decimal number that includes both an integer and a fractional part to another base (like base 4 or base 8), we perform the conversion for the integer and fractional parts separately and then combine them.</p>
+                        <p><strong>Example: Convert Decimal (330.5)<sub>10</sub> to Base 4 and Base 8.</strong></p>
+                        
+                        <p><strong>Part 1: Conversion of the Integer Part (330)<sub>10</sub></strong></p>
+                        <p><strong>Conversion to Base 4 (Quaternary):</strong> We use the method of repeated division by the new base (4), recording the remainders at each step. The remainders, read in reverse order of their calculation (from bottom to top), form the digits of the number in the new base.</p>
+                        <ol>
+                            <li>330 ÷ 4 = 82 with a remainder of <strong>2</strong> (This is the Least Significant Digit - LSD)</li>
+                            <li>82  ÷ 4 = 20 with a remainder of <strong>2</strong></li>
+                            <li>20  ÷ 4 = 5  with a remainder of <strong>0</strong></li>
+                            <li>5   ÷ 4 = 1  with a remainder of <strong>1</strong></li>
+                            <li>1   ÷ 4 = 0  with a remainder of <strong>1</strong> (This is the Most Significant Digit - MSD)</li>
+                        </ol>
+                        <p>Reading the remainders from bottom up (MSD to LSD): (330)<sub>10</sub> = (11022)<sub>4</sub>.</p>
+
+                        <p><strong>Conversion to Base 8 (Octal):</strong> We use the method of repeated division by the new base (8).</p>
+                        <ol>
+                            <li>330 ÷ 8 = 41 with a remainder of <strong>2</strong> (LSD)</li>
+                            <li>41  ÷ 8 = 5  with a remainder of <strong>1</strong></li>
+                            <li>5   ÷ 8 = 0  with a remainder of <strong>5</strong> (MSD)</li>
+                        </ol>
+                        <p>Reading the remainders from bottom to top: (330)<sub>10</sub> = (512)<sub>8</sub>.</p>
+
+                        <p><strong>Part 2: Conversion of the Fractional Part (0.5)<sub>10</sub></strong></p>
+                        <p><strong>Conversion to Base 4:</strong> We use the method of repeated multiplication of the fractional part by the new base (4), recording the integer part of the product at each step. The integer parts, read in the order of calculation (from top to bottom), form the digits of the fractional part in the new base.</p>
+                        <ol>
+                            <li>0.5 × 4 = <strong>2</strong>.0  (Integer part is 2). The new fractional part is .0, so we stop.</li>
+                        </ol>
+                        <p>Reading the integer parts obtained: (0.5)<sub>10</sub> = (0.2)<sub>4</sub>.</p>
+
+                        <p><strong>Conversion to Base 8:</strong> We use the method of repeated multiplication by the new base (8).</p>
+                        <ol>
+                            <li>0.5 × 8 = <strong>4</strong>.0  (Integer part is 4). The new fractional part is .0, so we stop.</li>
+                        </ol>
+                        <p>Reading the integer parts obtained: (0.5)<sub>10</sub> = (0.4)<sub>8</sub>.</p>
+
+                        <p><strong>Step 3: Combine Integer and Fractional Parts</strong></p>
+                        <ul>
+                            <li><strong>In Base 4:</strong> The integer part is (11022)<sub>4</sub> and the fractional part is (0.2)<sub>4</sub>.
+                                Therefore, (330.5)<sub>10</sub> = **(11022.2)<sub>4</sub>**.</li>
+                            <li><strong>In Base 8:</strong> The integer part is (512)<sub>8</sub> and the fractional part is (0.4)<sub>8</sub>.
+                                Therefore, (330.5)<sub>10</sub> = **(512.4)<sub>8</sub>**.</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>3. Explain 4-bit parallel adder with diagram.</summary>
+                 <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~3, Example Papers: S2024, W2023, W2019 (OR))</p>
+                    <div class="answer-section">
+                        <p>A <strong>4-bit parallel adder</strong> is a digital combinational circuit that performs the addition of two 4-bit binary numbers simultaneously. It is constructed by cascading multiple Full Adder (FA) circuits. Each Full Adder handles the addition of one pair of corresponding bits from the input numbers, along with a carry-in from the preceding (less significant) stage.</p>
+                        
+                        <p><strong>Structure and Operation:</strong></p>
+                        <p>Let the two 4-bit binary numbers to be added be A = A<sub>3</sub>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub> and B = B<sub>3</sub>B<sub>2</sub>B<sub>1</sub>B<sub>0</sub>. Here, A<sub>0</sub> and B<sub>0</sub> are the Least Significant Bits (LSBs), while A<sub>3</sub> and B<sub>3</sub> are the Most Significant Bits (MSBs). An initial carry-in, C<sub>0</sub>, is provided to the LSB stage (for simple addition of two numbers, C<sub>0</sub> is typically 0).</p>
+                        <p>The 4-bit parallel adder utilizes four Full Adder circuits (FA<sub>0</sub>, FA<sub>1</sub>, FA<sub>2</sub>, FA<sub>3</sub>) as follows:</p>
+                        <ol>
+                            <li><strong>FA<sub>0</sub> (LSB Stage):</strong>
+                                <ul>
+                                    <li>Inputs: A<sub>0</sub> (bit 0 of A), B<sub>0</sub> (bit 0 of B), C<sub>0</sub> (initial carry-in).</li>
+                                    <li>Outputs: Sum bit S<sub>0</sub>, and Carry-out bit C<sub>1</sub> (which becomes carry-in for the next stage).</li>
+                                </ul>
+                            </li>
+                            <li><strong>FA<sub>1</sub> (Second Stage):</strong>
+                                <ul>
+                                    <li>Inputs: A<sub>1</sub>, B<sub>1</sub>, C<sub>1</sub> (carry from FA<sub>0</sub>).</li>
+                                    <li>Outputs: Sum bit S<sub>1</sub>, and Carry-out bit C<sub>2</sub>.</li>
+                                </ul>
+                            </li>
+                            <li><strong>FA<sub>2</sub> (Third Stage):</strong>
+                                <ul>
+                                    <li>Inputs: A<sub>2</sub>, B<sub>2</sub>, C<sub>2</sub> (carry from FA<sub>1</sub>).</li>
+                                    <li>Outputs: Sum bit S<sub>2</sub>, and Carry-out bit C<sub>3</sub>.</li>
+                                </ul>
+                            </li>
+                            <li><strong>FA<sub>3</sub> (MSB Stage):</strong>
+                                <ul>
+                                    <li>Inputs: A<sub>3</sub>, B<sub>3</sub>, C<sub>3</sub> (carry from FA<sub>2</sub>).</li>
+                                    <li>Outputs: Sum bit S<sub>3</sub>, and the Final Carry-out C<sub>4</sub> (often denoted as C<sub>out</sub>).</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>The final sum of the 4-bit addition is represented by the bits S<sub>3</sub>S<sub>2</sub>S<sub>1</sub>S<sub>0</sub>. The C<sub>4</sub> output is the overall carry generated if the sum exceeds 15 (the maximum value representable by 4 bits).</p>
+                        
+                        <p><strong>Block Diagram:</strong></p>
+                        <div class="diagram-description">
+                            <p>The diagram shows four Full Adder (FA) blocks, typically arranged horizontally from right to left (FA<sub>0</sub> to FA<sub>3</sub>), indicating the flow from LSB to MSB.</p>
+                            <ul>
+                                <li>Each FA block is a rectangle with three inputs (A<sub>i</sub>, B<sub>i</sub>, C<sub>i-1</sub>) and two outputs (S<sub>i</sub>, C<sub>i</sub>).</li>
+                                <li><strong>FA<sub>0</sub> (rightmost):</strong> Receives inputs A<sub>0</sub>, B<sub>0</sub>, and an external C<sub>0</sub> (initial carry-in). It produces output S<sub>0</sub> (LSB of the sum) and carry-out C<sub>1</sub>.</li>
+                                <li>The C<sub>1</sub> output from FA<sub>0</sub> is connected directly to the carry-in input of FA<sub>1</sub>.</li>
+                                <li><strong>FA<sub>1</sub>:</strong> Receives inputs A<sub>1</sub>, B<sub>1</sub>, and C<sub>1</sub>. It produces output S<sub>1</sub> and carry-out C<sub>2</sub>.</li>
+                                <li>C<sub>2</sub> from FA<sub>1</sub> connects to the carry-in of FA<sub>2</sub>.</li>
+                                <li><strong>FA<sub>2</sub>:</strong> Receives inputs A<sub>2</sub>, B<sub>2</sub>, and C<sub>2</sub>. It produces output S<sub>2</sub> and carry-out C<sub>3</sub>.</li>
+                                <li>C<sub>3</sub> from FA<sub>2</sub> connects to the carry-in of FA<sub>3</sub>.</li>
+                                <li><strong>FA<sub>3</sub> (leftmost):</strong> Receives inputs A<sub>3</sub>, B<sub>3</sub>, and C<sub>3</sub>. It produces output S<sub>3</sub> (MSB of the sum) and the final carry-out C<sub>4</sub>.</li>
+                            </ul>
+                            <p>The collective sum outputs {S<sub>3</sub>, S<sub>2</sub>, S<sub>1</sub>, S<sub>0</sub>} form the 4-bit sum result. C<sub>4</sub> represents the carry out of the entire 4-bit addition.</p>
+                            <img src="images/4_mark/Q3.webp" alt="Block diagram of a 4-bit parallel adder showing four full adders cascaded.">
+                        </div>
+
+                        <p><strong>Advantages:</strong></p>
+                        <ul>
+                            <li><strong>Parallel Operation:</strong> All bits of the input numbers are applied simultaneously to their respective full adders, and the sum bits are generated in parallel (after carry propagation). This makes this type of adder significantly faster than a serial adder (which adds one bit pair at a time).</li>
+                            <li><strong>Simplicity of Design:</strong> It's a straightforward and modular extension of the Full Adder concept, making it easy to understand and to expand for a larger number of bits (e.g., an 8-bit parallel adder would use 8 FAs).</li>
+                        </ul>
+                        <p><strong>Disadvantage (Carry Propagation Delay):</strong></p>
+                        <ul>
+                            <li>The primary limitation is the **carry propagation delay**, also known as ripple-carry delay. Although the sum for each bit position is calculated by its own FA, the carry input to a later stage (e.g., FA<sub>3</sub>) depends on the carry output of the previous stage (FA<sub>2</sub>), which in turn depends on FA<sub>1</sub>, and so on. The carry must "ripple" through all preceding stages. This cumulative delay can become significant for adders with a large number of bits, limiting the overall speed of the addition. More advanced adder designs like Carry Look-Ahead Adders are used to mitigate this delay.</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>4. Explain JK flip flop with its characteristic table and excitation table.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2024, W2023)</p>
+                    <div class="answer-section">
+                        <p>The <strong>JK flip-flop</strong> is a versatile clocked sequential logic circuit that is an improvement over the SR flip-flop. It has two data inputs, J (Set) and K (Reset), a clock input (CLK), and two complementary outputs: Q (the normal output) and Q' (the inverted output). The JK flip-flop is highly useful because it has no undefined states; specifically, when J=1 and K=1, the output toggles.</p>
+                        <p>The behavior of the JK flip-flop is determined by the J and K inputs at the active edge of the clock pulse.</p>
+                        
+                        <p><strong>Working Principle (Input Combinations):</strong></p>
+                        <ul>
+                            <li><strong>J=0, K=0 (Hold State / No Change):</strong> When both J and K inputs are LOW, the clock pulse does not change the state of the flip-flop. The output Q remains in its present state (Q<sub>n+1</sub> = Q<sub>n</sub>).</li>
+                            <li><strong>J=0, K=1 (Reset State):</strong> If J is LOW and K is HIGH, the flip-flop is reset on the active clock edge. This means the Q output will go to 0 (and Q' will become 1), irrespective of its previous state.</li>
+                            <li><strong>J=1, K=0 (Set State):</strong> If J is HIGH and K is LOW, the flip-flop is set on the active clock edge. This means the Q output will go to 1 (and Q' will become 0), irrespective of its previous state.</li>
+                            <li><strong>J=1, K=1 (Toggle State):</strong> If both J and K inputs are HIGH, the flip-flop will toggle its state on the active clock edge. If Q was 0, it becomes 1; if Q was 1, it becomes 0 (Q<sub>n+1</sub> = Q<sub>n</sub>').</li>
+                        </ul>
+                        
+                        <p><strong>Characteristic Table:</strong></p>
+                        <p>The characteristic table defines the next state (Q<sub>n+1</sub>) of the flip-flop based on its current inputs (J, K) and its current state (Q<sub>n</sub>).</p>
+                        <table>
+                            <thead>
+                                <tr><th>J</th><th>K</th><th>Q<sub>n</sub> (Present State)</th><th>Q<sub>n+1</sub> (Next State)</th><th>Operation</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>No Change</td></tr>
+                                <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>No Change</td></tr>
+                                <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>Reset</td></tr>
+                                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>Reset</td></tr>
+                                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>Set</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>Set</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>Toggle</td></tr>
+                                <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>Toggle</td></tr>
+                            </tbody>
+                        </table>
+                        <p>The characteristic equation, derived from this table, is: <strong>Q<sub>n+1</sub> = JQ<sub>n</sub>' + K'Q<sub>n</sub></strong></p>
+
+                        <p><strong>Excitation Table:</strong></p>
+                        <p>The excitation table is used in sequential circuit design. It specifies the required J and K input conditions that will cause a desired state transition from a present state (Q<sub>n</sub>) to a specific next state (Q<sub>n+1</sub>).</p>
+                        <table>
+                            <thead>
+                                <tr><th>Q<sub>n</sub> (Present State)</th><th>Q<sub>n+1</sub> (Next State)</th><th>J</th><th>K</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>X</td></tr>
+                                <tr><td>0</td><td>1</td><td>1</td><td>X</td></tr>
+                                <tr><td>1</td><td>0</td><td>X</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>X</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                        <p><em>(X denotes a "don't care" condition, meaning the input can be either 0 or 1 to achieve the desired transition.)</em></p>
+                        
+                        <div class="diagram-description">
+                            <p><strong>Logic Diagram (Conceptual Block):</strong> The standard symbol for a JK flip-flop is a rectangle with input lines for J, K, and CLK (the clock input often has a small triangle to indicate it's edge-triggered). It has output lines Q and Q'.</p>
+                            <img src="images/4_mark/Q4.webp" alt="Block diagram of a JK Flip-Flop">
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>5. Explain R-2R ladder type D/A converter.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~4, Example Papers: S2024, W2023, W2022 (OR), W2019)</p>
+                    <div class="answer-section">
+                        <p>The <strong>R-2R Ladder Digital-to-Analog Converter (DAC)</strong> is a widely adopted circuit for converting digital binary inputs into a proportional analog output voltage. Its primary advantage over other types like the binary-weighted resistor DAC is that it requires only two distinct resistor values (R and 2R). This makes it significantly easier to fabricate integrated circuits with high precision because it's easier to match ratios of resistors than to create a wide range of accurately valued resistors.</p>
+                        
+                        <p><strong>Structure:</strong></p>
+                        <p>For an n-bit digital input word (B<sub>n-1</sub>, B<sub>n-2</sub>, ..., B<sub>0</sub>, where B<sub>n-1</sub> is the Most Significant Bit (MSB) and B<sub>0</sub> is the Least Significant Bit (LSB)), the R-2R ladder network is constructed as follows:</p>
+                        <ul>
+                            <li>The ladder consists of a series of resistors of value R forming the "horizontal rungs."</li>
+                            <li>For each digital input bit B<sub>i</sub>, there's a resistor of value 2R connected vertically.</li>
+                            <li>Each of these 2R resistors is connected via an electronic switch (controlled by the corresponding bit B<sub>i</sub>). If B<sub>i</sub>=1, the switch connects the 2R resistor to a stable reference voltage (V<sub>ref</sub>). If B<sub>i</sub>=0, the switch connects the 2R resistor to ground (0V).</li>
+                            <li>The "bottom" of each switched 2R resistor connects to a node in the R-ladder (at the junction of two R resistors or at the output node).</li>
+                            <li>Crucially, the LSB end of the R-ladder network is terminated with a 2R resistor connected to ground. This termination is essential for maintaining the characteristic impedance of the ladder.</li>
+                        </ul>
+                        <p>The analog output voltage (V<sub>out</sub>) is typically taken from the MSB end of the ladder. This output is often buffered by an operational amplifier (op-amp) configured as a voltage follower to provide a low-impedance output, or the entire ladder network can feed into the summing junction of an op-amp in an inverting amplifier configuration.</p>
+
+                        <div class="diagram-description">
+                            <p><strong>Conceptual Diagram (e.g., for a 3-bit R-2R DAC):</strong></p>
+                            <p>Imagine inputs B<sub>2</sub> (MSB), B<sub>1</sub>, B<sub>0</sub> (LSB).</p>
+                            <ul>
+                                <li>At the B<sub>2</sub> input, a switch connects a 2R resistor to either V<sub>ref</sub> or ground. This 2R resistor connects to Node 2.</li>
+                                <li>Node 2 is the output node V<sub>out</sub> (or input to an op-amp buffer). An R resistor connects Node 2 to Node 1.</li>
+                                <li>At the B<sub>1</sub> input, a switch connects a 2R resistor to V<sub>ref</sub> or ground. This 2R connects to Node 1. An R resistor connects Node 1 to Node 0.</li>
+                                <li>At the B<sub>0</sub> input, a switch connects a 2R resistor to V<sub>ref</sub> or ground. This 2R connects to Node 0. An R resistor connects Node 0 to one end of the terminating 2R resistor, the other end of which is grounded.</li>
+                            </ul>
+                            <img src="images/4_mark/Q5.jpg" alt="Block diagram of an R-2R Ladder DAC">
+                        </div>
+
+                        <p><strong>Working Principle:</strong></p>
+                        <p>The R-2R ladder network functions on the principle of precise current or voltage division. A key characteristic of this network, due to the terminating 2R resistor, is that the equivalent resistance looking from any node towards the LSB end is R. This property leads to a precise binary weighting of the contribution of each input bit to the final analog output.</p>
+                        <ul>
+                            <li>Each bit B<sub>i</sub>, when set to '1' (connected to V<sub>ref</sub>), contributes a current (or voltage) that is weighted according to its binary position.</li>
+                            <li>The MSB has the largest influence on the output. Each subsequent bit towards the LSB contributes half the weight of the bit to its immediate left (the next more significant bit). For example, the current contribution due to B<sub>n-2</sub> is half that of B<sub>n-1</sub>.</li>
+                        </ul>
+                        <p>The analog output voltage V<sub>out</sub> is the linear superposition of the voltages (or currents summed and converted to voltage by an op-amp) contributed by each bit that is set to '1'. The general formula for the output voltage (when buffered directly or using an op-amp configured as a voltage follower from the MSB node) is:</p>
+                        <p><strong>V<sub>out</sub> = V<sub>ref</sub> ⋅ (B<sub>n-1</sub>/2<sup>1</sup> + B<sub>n-2</sub>/2<sup>2</sup> + B<sub>n-3</sub>/2<sup>3</sup> + ... + B<sub>0</sub>/2<sup>n</sup>)</strong></p>
+                        <p>This shows that V<sub>out</sub> is directly proportional to the binary value of the digital input word and the reference voltage.</p>
+                        
+                        <p><strong>Key elements for a 4-mark answer:</strong> A clear explanation of the R-2R structure highlighting the use of only two resistor values. A simple, labeled diagram (e.g., for 3 or 4 bits). A concise description of the working principle based on voltage/current division and binary weighting. Stating the output voltage formula and mentioning its key advantage (precision due to matched R values) would be beneficial.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>6. Minimize a Boolean function using K-map (4 variables, with don't cares).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~4, Example Papers: S2024 (OR), W2023 (OR), W2020, S2023)</p>
+                    <div class="answer-section">
+                        <p>A **Karnaugh Map (K-map)** provides a systematic graphical method for simplifying Boolean algebraic expressions. For a 4-variable function, typically F(A,B,C,D), a 16-cell K-map is used. "Don't care" conditions (represented by 'X' or 'd') signify input combinations whose outputs are irrelevant or will not occur. These don't cares can be strategically included in groups of 1s if they help to form larger groups, which in turn leads to a more simplified Boolean expression.</p>
+                        
+                        <p><strong>Example: Minimize F(A,B,C,D) = Σm(1, 5, 6, 12, 13, 14) + d(2, 4)</strong></p>
+                        
+                        <p><strong>Step 1: Draw the 4-variable K-map and plot the minterms (1s) and don't cares (X).</strong></p>
+                        <p>The K-map is arranged with variables AB defining the rows and CD defining the columns (or vice-versa), ensuring Gray code sequencing (00, 01, 11, 10) for adjacent cells to differ by only one variable.</p>
+                        
+                        <p>Minterm Values (A is MSB, D is LSB):</p>
+                        <ul>
+                            <li>m0: 0000</li><li>m1: 0001</li><li>m2: 0010</li><li>m3: 0011</li>
+                            <li>m4: 0100</li><li>m5: 0101</li><li>m6: 0110</li><li>m7: 0111</li>
+                            <li>m8: 1000</li><li>m9: 1001</li><li>m10: 1010</li><li>m11: 1011</li>
+                            <li>m12: 1100</li><li>m13: 1101</li><li>m14: 1110</li><li>m15: 1111</li>
+                        </ul>
+
+                        <p>K-Map for F(A,B,C,D) = Σm(1, 5, 6, 12, 13, 14) + d(2, 4):</p>
+                        <div class="code-block">
+CD\\AB |  00  |  01  |  11  |  10  |
+------|------|------|------|------|
+ 00   | 0<sub>(0)</sub> | X<sub>(4)</sub> | 1<sub>(12)</sub>| 0<sub>(8)</sub> |
+ 01   | 1<sub>(1)</sub> | 1<sub>(5)</sub> | 1<sub>(13)</sub>| 0<sub>(9)</sub> |
+ 11   | 0<sub>(3)</sub> | 0<sub>(7)</sub> | 0<sub>(15)</sub>| 0<sub>(11)</sub>|
+ 10   | X<sub>(2)</sub> | 1<sub>(6)</sub> | 1<sub>(14)</sub>| 0<sub>(10)</sub>|
+                        </div>
+                        <p><em>(Cells are marked with 1 for specified minterms, X for don't cares, and 0 for other minterms. Minterm numbers in parentheses are for reference.)</em></p>
+
+                        <p><strong>Step 2: Group the 1s, using don't cares (X) to form the largest possible rectangular groups of 1s (and included Xs). Groups must contain a number of cells that is a power of 2 (e.g., 1, 2, 4, 8, 16). The goal is to cover all the 1s using the fewest, largest possible groups. These groups are called Prime Implicants (PIs).</strong></p>
+                        
+                        <p>Identifying the groups:</p>
+                        <ol>
+                            <li>
+                                <strong>Group 1 (Quad):</strong> Cover m12(1), m14(1), m6(1) and the don't care m4(X).
+                                <ul>
+                                    <li>Cells: m4(0100), m6(0110), m12(1100), m14(1110).</li>
+                                    <li>Looking at the variables for these cells:
+                                        <ul>
+                                            <li>A changes (0 to 1) → A is eliminated.</li>
+                                            <li>B is always 1 → B remains.</li>
+                                            <li>C changes (0 to 1) → C is eliminated.</li>
+                                            <li>D is always 0 → D' remains.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Term for this group: <strong>BD'</strong>. This is an Essential Prime Implicant (EPI) as it covers m12, m14, and m6, some of which might not be covered as efficiently by other groups.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Group 2 (Pair):</strong> Cover the minterm m1(1). It can be grouped with m5(1).
+                                <ul>
+                                    <li>Cells: m1(0001), m5(0101).</li>
+                                    <li>Looking at the variables:
+                                        <ul>
+                                            <li>A is always 0 → A' remains.</li>
+                                            <li>B changes (0 and 1) → B is eliminated.</li>
+                                            <li>C is always 0 → C' remains.</li>
+                                            <li>D is always 1 → D remains.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Term for this group: <strong>A'C'D</strong>. This is an EPI as it's the only way to cover m1.
+                                    </li>
+                                </ul>
+                            </li>
+                             <li>
+                                <strong>Group 3 (Pair):</strong> Cover the remaining minterm m13(1). It can be grouped with m5(1) (which is already covered by Group 2, but PIs can overlap).
+                                <ul>
+                                    <li>Cells: m5(0101), m13(1101).</li>
+                                    <li>Looking at the variables:
+                                        <ul>
+                                            <li>A changes (0 and 1) → A is eliminated.</li>
+                                            <li>B is always 1 → B remains.</li>
+                                            <li>C is always 0 → C' remains.</li>
+                                            <li>D is always 1 → D remains.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Term for this group: <strong>BC'D</strong>. This is an EPI as it's the only way to cover m13.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>All actual '1's (m1, m5, m6, m12, m13, m14) are covered by these three essential prime implicants. The don't care at m2 was not used as it did not help in forming a larger group for any of the essential 1s in this particular solution.</p>
+
+                        <p><strong>Step 3: Write the simplified Boolean expression.</strong></p>
+                        <p>The minimized function is the sum (ORing) of the essential prime implicants found:</p>
+                        <p><strong>F(A,B,C,D) = BD' + A'C'D + BC'D</strong></p>
+                        
+                        <div class="diagram-description">
+                            <p><strong>K-Map with Groupings Shown:</strong></p>
+                            <p>A visual K-map with the cells filled and the groups clearly looped would be presented here to illustrate the grouping process.</p>
+                            <img src="images/4_mark/Q6.png" alt="K-Map with groupings for F(A,B,C,D)">
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>7. Explain the working of SISO (Serial-In, Serial-Out) shift register.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2024 (OR), W2019)</p>
+                    <div class="answer-section">
+                        <p>A <strong>Serial-In, Serial-Out (SISO) shift register</strong> is a type of sequential logic circuit that allows data to be entered serially (one bit per clock cycle) and also retrieved serially (one bit at a time). It's constructed using a cascade of flip-flops (typically D flip-flops or JK flip-flops configured to act like D flip-flops), where the output of one flip-flop is connected to the input of the next, and all flip-flops are synchronized by a common clock signal.</p>
+                        
+                        <p><strong>Structure (e.g., 4-bit SISO using D Flip-Flops):</strong></p>
+                        <p>Imagine four D flip-flops (FF<sub>3</sub>, FF<sub>2</sub>, FF<sub>1</sub>, FF<sub>0</sub>) connected in a chain:</p>
+                        <ul>
+                            <li>The D input of the first flip-flop (FF<sub>3</sub>, representing the most significant bit or input stage) is the <strong>Serial Data Input (SI)</strong>.</li>
+                            <li>The Q output of FF<sub>3</sub> (Q<sub>3</sub>) is connected to the D input of FF<sub>2</sub>.</li>
+                            <li>The Q output of FF<sub>2</sub> (Q<sub>2</sub>) is connected to the D input of FF<sub>1</sub>.</li>
+                            <li>The Q output of FF<sub>1</sub> (Q<sub>1</sub>) is connected to the D input of FF<sub>0</sub>.</li>
+                            <li>The Q output of the last flip-flop (FF<sub>0</sub>, representing the least significant bit or output stage), Q<sub>0</sub>, is the <strong>Serial Data Output (SO)</strong>.</li>
+                            <li>All flip-flops share a common <strong>Clock (CLK)</strong> input. A <strong>Clear (CLR)</strong> input (asynchronous) might also be present to reset all flip-flop outputs to 0.</li>
+                        </ul>
+
+                        <div class="diagram-description">
+                            <p><strong>Block Diagram:</strong>
+                            A diagram would show four D flip-flop blocks (labeled FF3, FF2, FF1, FF0 from left to right).
+                            <ul>
+                                <li>An arrow labeled "Serial Input (SI)" points to the D input of FF3.</li>
+                                <li>The Q output of FF3 (labeled Q3) connects to the D input of FF2.</li>
+                                <li>The Q output of FF2 (labeled Q2) connects to the D input of FF1.</li>
+                                <li>The Q output of FF1 (labeled Q1) connects to the D input of FF0.</li>
+                                <li>An arrow labeled "Serial Output (SO)" originates from the Q output of FF0 (on the right).</li>
+                                <li>A common "CLK" line connects to the clock input (usually marked with a triangle for edge-triggering) of all four flip-flops.</li>
+                            </ul>
+                            <img src="images/4_mark/Q7.png" alt="Block diagram of a 4-bit SISO Shift Register">
+                            </p>
+                        </div>
+
+                        <p><strong>Working Principle:</strong></p>
+                        <ol>
+                            <li><strong>Data Entry (Serial-In):</strong>
+                                Data bits are applied sequentially to the SI line. With each active clock pulse (e.g., positive edge):
+                                <ul>
+                                    <li>The bit present at SI is loaded into the first flip-flop (FF<sub>3</sub>).</li>
+                                    <li>The content of FF<sub>3</sub> is transferred to FF<sub>2</sub>.</li>
+                                    <li>The content of FF<sub>2</sub> is transferred to FF<sub>1</sub>.</li>
+                                    <li>The content of FF<sub>1</sub> is transferred to FF<sub>0</sub>.</li>
+                                    <li>The bit that was previously in FF<sub>0</sub> is shifted out and appears at the SO line. If not captured, this bit is lost.</li>
+                                </ul>
+                                For an N-bit register, it takes N clock pulses to serially load an N-bit word completely into the register.
+                            </li>
+                            <li><strong>Data Retrieval (Serial-Out):</strong>
+                                Once an N-bit word is stored in the register, it takes an additional N clock pulses to shift all bits out sequentially from the SO line. During these N pulses, if the SI line is held at a constant value (e.g., 0), then 0s will be shifted into the register from the left as the stored data shifts out from the right.</li>
+                        </ol>
+                        
+                        <p><strong>Example (loading "1011" into a 4-bit SISO register, assuming LSB '1' is input first at SI, and register is initially all 0s):</strong></p>
+                        <p>Data to load (LSB first): 1 (B0), 1 (B1), 0 (B2), 1 (B3)</p>
+                        <ul>
+                            <li><strong>Initial State:</strong> Q3Q2Q1Q0 = 0000</li>
+                            <li><strong>Clock Pulse 1 (SI=1 for B0):</strong> Q3=1, Q2=0, Q1=0, Q0=0. (Register: 1000) SO = 0</li>
+                            <li><strong>Clock Pulse 2 (SI=1 for B1):</strong> Q3=1, Q2=1, Q1=0, Q0=0. (Register: 1100) SO = 0</li>
+                            <li><strong>Clock Pulse 3 (SI=0 for B2):</strong> Q3=0, Q2=1, Q1=1, Q0=0. (Register: 0110) SO = 0</li>
+                            <li><strong>Clock Pulse 4 (SI=1 for B3):</strong> Q3=1, Q2=0, Q1=1, Q0=1. (Register: 1011) SO = 0. The number "1011" is now stored as Q3Q2Q1Q0.</li>
+                        </ul>
+
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Serial data communication (transmitting or receiving data one bit at a time over a single line).</li>
+                            <li>Implementing time delays for digital signals (a bit input at SI appears at SO after N clock pulses for an N-bit register).</li>
+                            <li>As a basic building block in more complex sequential circuits like counters or sequence generators.</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>8. Compare TTL and CMOS logic families (at least 8 points).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~3, Example Papers: W2024, S2023, W2021)</p>
+                    <div class="answer-section">
+                        <p>TTL (Transistor-Transistor Logic) and CMOS (Complementary Metal-Oxide-Semiconductor) are two prominent digital logic families, each with distinct operational characteristics, advantages, and disadvantages. Here's a detailed comparison:</p>
+                        
+                        <table>
+                            <thead>
+                                <tr><th>Parameter / Feature</th><th>TTL (Transistor-Transistor Logic)</th><th>CMOS (Complementary Metal-Oxide-Semiconductor)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Basic Switching Element</strong></td>
+                                    <td>Bipolar Junction Transistors (BJTs). The input stage often uses a multi-emitter BJT.</td>
+                                    <td>MOSFETs (Metal-Oxide-Semiconductor Field-Effect Transistors), specifically using complementary pairs of PMOS (P-channel) and NMOS (N-channel) transistors working in conjunction.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Static Power Dissipation</strong></td>
+                                    <td>Relatively high. Standard TTL gates consume power even when not switching (static dissipation) due to transistor biasing currents. Typically in the range of 1 to 20 milliwatts (mW) per gate.</td>
+                                    <td>Extremely low. Ideally, when the inputs are stable (not switching), one transistor in the complementary PMOS-NMOS pair is ON while the other is OFF, resulting in almost no direct path from the power supply (V<sub>DD</sub>) to ground. Static power dissipation is mainly due to leakage currents and is typically in the microwatt (µW) or even nanowatt (nW) range per gate.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Dynamic Power Dissipation</strong></td>
+                                    <td>Also contributes to overall power consumption and increases with switching frequency, but the static component is often more dominant at lower to moderate frequencies.</td>
+                                    <td>This is the main source of power consumption in CMOS circuits. It is directly proportional to the switching frequency (f), the square of the supply voltage (V<sub>DD</sub><sup>2</sup>), and the load capacitance (C) being charged and discharged: P<sub>dynamic</sub> ≈ C ⋅ V<sub>DD</sub><sup>2</sup> ⋅ f. Can become significant at very high frequencies.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Supply Voltage (V<sub>CC</sub> / V<sub>DD</sub>)</strong></td>
+                                    <td>Typically requires a relatively precise +5V supply for standard 74xx series. Some variations like Low-Voltage TTL (LVTTL) operate at +3.3V. Less tolerant to supply voltage variations.</td>
+                                    <td>Offers a much wider and more flexible operating voltage range. Older series (e.g., 4000B) could operate from 3V to 18V. Modern series (e.g., 74HC, 74HCT, 74LV, 74LVC) typically operate from 1.8V to 5.5V, with specialized low-voltage versions going even lower (e.g., 0.8V).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Propagation Delay (Speed)</strong></td>
+                                    <td>Moderate to fast. Standard TTL (74xx series) has propagation delays around 10 ns. Various sub-families (like Schottky TTL - 74S, Low-power Schottky - 74LS, Advanced Schottky - 74AS, Fast - 74F) offer different speed/power trade-offs, with speeds down to approximately 1.5 ns for faster versions.</td>
+                                    <td>Speed is highly dependent on the supply voltage and the specific CMOS series. Older CMOS (like 4000 series) was generally slower than TTL, especially at lower supply voltages. Modern CMOS (e.g., 74HC, 74AC, 74AHC, 74LVC) can be very fast, with propagation delays comparable to or even better than many TTL families (sub-nanosecond to a few nanoseconds). Higher V<sub>DD</sub> generally results in faster switching speeds for CMOS.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Noise Margin</strong></td>
+                                    <td>Good. For standard 5V TTL, typical noise margins (NM<sub>H</sub> and NM<sub>L</sub>) are around 0.4V (e.g., V<sub>OHmin</sub>=2.4V, V<sub>IHmin</sub>=2.0V → NM<sub>H</sub>=0.4V; V<sub>ILmax</sub>=0.8V, V<sub>OLmax</sub>=0.4V → NM<sub>L</sub>=0.4V). TTL is generally considered more susceptible to power supply noise.</td>
+                                    <td>Excellent. Typically a larger fraction of the supply voltage. For example, for HC series, V<sub>ILmax</sub> is often around 0.3V<sub>DD</sub> and V<sub>IHmin</sub> around 0.7V<sub>DD</sub>, giving noise margins close to 0.3V<sub>DD</sub> to 0.5V<sub>DD</sub>. This provides high immunity to variations in logic levels and voltage noise.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Fan-out</strong></td>
+                                    <td>Moderate. A standard TTL output can typically drive 10 standard TTL inputs of the same family (DC fan-out). This is limited by the current sourcing (I<sub>OH</sub>) and sinking (I<sub>OL</sub>) capabilities of the output BJT stage.</td>
+                                    <td>Very high when driving other CMOS inputs, as MOSFET gate inputs are primarily capacitive and draw negligible DC input current (I<sub>IH</sub>, I<sub>IL</sub> are in the picoampere or nanoampere range). Fan-out is often specified as >50 CMOS loads. However, high fan-out increases the total capacitive load, which slows down the switching speed of the driving gate.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Input Impedance</strong></td>
+                                    <td>Relatively low, as current is drawn by the base-emitter junctions of the input BJTs when inputs are LOW (current sinking).</td>
+                                    <td>Extremely high, due to the insulated gate of MOSFETs. Input current is typically in the picoampere range (leakage current).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>9. Handling of Unused Inputs</strong></td>
+                                    <td>Unused TTL inputs typically float to a logic HIGH level due to the internal structure of the multi-emitter input transistor. However, leaving them floating makes them susceptible to noise pickup and can increase propagation delays. It is best practice to tie them to V<sub>CC</sub> (often through a pull-up resistor like 1kΩ-10kΩ for multiple inputs) or to another used input that will not adversely affect the logic.</td>
+                                    <td>Unused CMOS inputs **must never** be left floating. A floating input can drift into the threshold voltage region (between valid HIGH and LOW levels), causing both the PMOS and NMOS transistors in an input stage to conduct simultaneously. This leads to a low-impedance path between V<sub>DD</sub> and Ground, resulting in excessive current draw (shoot-through current), increased power consumption, and potential device damage or unpredictable operation. They must be tied directly to V<sub>DD</sub> (for a logic HIGH) or Ground (for a logic LOW).</td>
+                                </tr>
+                                 <tr>
+                                    <td><strong>10. Packing Density</strong></td>
+                                    <td>Lower due to the larger size of BJTs and the necessity of resistors.</td>
+                                    <td>Higher due to the smaller size and simpler structure of MOSFETs, making CMOS the preferred technology for Large Scale Integration (LSI) and Very Large Scale Integration (VLSI) like microprocessors and memories.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>9. Design a Full Adder circuit using basic gates (show truth table, K-maps, circuit).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2023, W2022)</p>
+                    <div class="answer-section">
+                        <p>A **Full Adder** is a fundamental combinational logic circuit that performs the arithmetic sum of three input bits. These bits are typically two bits to be added (let's call them A and B) and a carry-in bit (C<sub>in</sub>) from a previous, less significant addition stage (in case of multi-bit adders). The Full Adder produces two outputs: a Sum bit (S) and a Carry-out bit (C<sub>out</sub>).</p>
+
+                        <p><strong>Step 1: Truth Table</strong></p>
+                        <p>The truth table lists all 2<sup>3</sup> = 8 possible combinations for the three inputs (A, B, C<sub>in</sub>) and their corresponding Sum (S) and Carry-out (C<sub>out</sub>) values.</p>
+                        <table>
+                            <thead>
+                                <tr><th>A</th><th>B</th><th>C<sub>in</sub></th><th>S (Sum)</th><th>C<sub>out</sub> (Carry-out)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>Step 2: K-Maps for Sum (S) and Carry-out (C<sub>out</sub>)</strong></p>
+                        <p>We use 3-variable K-maps with inputs A, B, and C<sub>in</sub>.</p>
+                        
+                        <p><strong>For Sum (S):</strong><br/>From the truth table, S = 1 for minterms m1(001), m2(010), m4(100), and m7(111).<br/>S = Σm(1, 2, 4, 7)</p>
+                        <div class="code-block">
+K-Map for Sum (S):
+      C<sub>in</sub>\AB | 00 | 01 | 11 | 10 |
+      -------|----|----|----|----|
+        0    | 0  | 1  | 0  | 1  |  (Cells: m0, m2, m6, m4)
+        1    | 1  | 0  | 1  | 0  |  (Cells: m1, m3, m7, m5)
+                        </div>
+                        <p>The K-map for Sum (S) shows a checkerboard pattern, which is characteristic of an XOR/XNOR function. There are no possible groupings of adjacent 1s to simplify it into a simpler SOP form using only AND/OR gates. The most compact expression uses XOR gates.</p>
+                        <p>The Sum expression is: <strong>S = A ⊕ B ⊕ C<sub>in</sub></strong><br/>
+                        (The canonical SOP form, if required, is S = A'B'C<sub>in</sub> + A'BC<sub>in</sub>' + AB'C<sub>in</sub>' + ABC<sub>in</sub>)</p>
+
+                        <p><strong>For Carry-out (C<sub>out</sub>):</strong><br/>From the truth table, C<sub>out</sub> = 1 for minterms m3(011), m5(101), m6(110), and m7(111).<br/>C<sub>out</sub> = Σm(3, 5, 6, 7)</p>
+                        <div class="code-block">
+K-Map for Carry-out (C<sub>out</sub>):
+      C<sub>in</sub>\AB | 00 | 01 | 11 | 10 |
+      -------|----|----|----|----|
+        0    | 0  | 0  | 1  | 0  |  (Cells: m0, m2, m6, m4)
+        1    | 0  | 1  | 1  | 1  |  (Cells: m1, m3, m7, m5)
+                        </div>
+                        <p>Grouping the 1s in the K-map for C<sub>out</sub>:</p>
+                        <ul>
+                            <li>Group 1 (Pair): m3 (A'BC<sub>in</sub>) and m7 (ABC<sub>in</sub>)  → BC<sub>in</sub> (Variable A changes)</li>
+                            <li>Group 2 (Pair): m5 (AB'C<sub>in</sub>) and m7 (ABC<sub>in</sub>)  → AC<sub>in</sub> (Variable B changes)</li>
+                            <li>Group 3 (Pair): m6 (ABC<sub>in</sub>') and m7 (ABC<sub>in</sub>) → AB (Variable C<sub>in</sub> changes)</li>
+                        </ul>
+                        <p>The simplified expression for Carry-out is: <strong>C<sub>out</sub> = AB + BC<sub>in</sub> + AC<sub>in</sub></strong></p>
+                        
+                        <p><strong>Step 3: Logic Diagram using Basic Gates</strong></p>
+                        <div class="diagram-description">
+                            <p>The circuit diagram would show inputs A, B, C<sub>in</sub> and outputs S, C<sub>out</sub>.</p>
+                            <p><strong>For Sum (S = A ⊕ B ⊕ C<sub>in</sub>):</strong>
+                            <ul>
+                                <li>One 2-input XOR gate takes A and B as inputs. Its output (let's call it P = A ⊕ B) is fed into a second 2-input XOR gate.</li>
+                                <li>The second 2-input XOR gate takes P and C<sub>in</sub> as its inputs. The output of this gate is the Sum S.</li>
+                            </ul>
+                            </p>
+                            <p><strong>For Carry-out (C<sub>out</sub> = AB + BC<sub>in</sub> + AC<sub>in</sub>):</strong>
+                            <ul>
+                                <li>Three 2-input AND gates are used:
+                                    <ul><li>AND1: Inputs A, B (Output: AB)</li>
+                                    <li>AND2: Inputs B, C<sub>in</sub> (Output: BC<sub>in</sub>)</li>
+                                    <li>AND3: Inputs A, C<sub>in</sub> (Output: AC<sub>in</sub>)</li></ul>
+                                </li>
+                                <li>The outputs of these three AND gates are connected to the inputs of a 3-input OR gate. The output of this OR gate is C<sub>out</sub>.</li>
+                            </ul>
+                             <img src="images/4_mark/Q9.png" alt="Logic Diagram of a Full Adder">
+                            </p>
+                        </div>
+                        <p>Alternatively, a Full Adder can also be constructed using two Half Adders and an OR gate.</p>
+                    </div>
+                </div>
+            </details>
+            
+            <details class="qa-block">
+                <summary>10. Explain different types of ROM (MROM, PROM, EPROM, EEPROM).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~3, Example Papers: W2024, S2022, W2020)</p>
+                    <div class="answer-section">
+                        <p><strong>Read-Only Memory (ROM)</strong> is a type of non-volatile semiconductor memory where data, once written, is either permanent or requires special operations to change. It's primarily used to store firmware, bootloaders, or application software that doesn't change often.</p>
+                        <p>The primary types of ROM are distinguished by their programming and erasability characteristics:</p>
+                        <ol>
+                            <li>
+                                <p><strong>MROM (Masked Read-Only Memory):</strong></p>
+                                <ul>
+                                    <li><strong>Programming:</strong> Data is permanently embedded into the IC by the manufacturer during the final steps of the semiconductor fabrication process, using a specific "mask" (a photolithographic template). This mask defines the physical interconnections that represent the stored data.</li>
+                                    <li><strong>Reprogrammable:</strong> No. Once manufactured, the content of an MROM cannot be altered.</li>
+                                    <li><strong>Key Features:</strong> Most economical for very high-volume production runs where the data is finalized. However, it involves high initial NRE (Non-Recurring Engineering) costs for mask creation and long lead times.</li>
+                                    <li><strong>Typical Use:</strong> Firmware in established, mass-produced consumer electronics, lookup tables, character generators.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>PROM (Programmable Read-Only Memory):</strong></p>
+                                <ul>
+                                    <li><strong>Programming:</strong> Programmed by the user (once) after manufacturing using a special PROM programmer device. Internally, PROMs contain a matrix of fusible links (tiny fuses made of materials like nichrome or polysilicon) or anti-fuses. The programmer selectively "blows" these fuses (or creates connections in the case of anti-fuses) to store the data pattern (0s and 1s).</li>
+                                    <li><strong>Reprogrammable:</strong> No. It is a One-Time Programmable (OTP) device. Once a fuse is blown, it cannot be restored.</li>
+                                    <li><strong>Key Features:</strong> Offers flexibility for users to program their own data, suitable for smaller production volumes or when unique data is needed per device. Lower initial cost and faster turnaround than MROM for such cases.</li>
+                                    <li><strong>Typical Use:</strong> Small-volume production, prototyping, game cartridges, device customization.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>EPROM (Erasable Programmable Read-Only Memory):</strong></p>
+                                <ul>
+                                    <li><strong>Programming:</strong> Programmed electrically by the user with an EPROM programmer. Data is stored as electrical charges trapped on a floating gate of a MOSFET.</li>
+                                    <li><strong>Erasure:</strong> The entire chip can be erased by exposing the silicon die (through a characteristic transparent quartz window on the IC package) to strong ultraviolet (UV) light for a specific duration (e.g., 10-30 minutes). The UV light gives the trapped electrons enough energy to escape from the floating gate, resetting the bits.</li>
+                                    <li><strong>Reprogrammable:</strong> Yes, it can be erased and reprogrammed multiple times (typically hundreds to thousands of erase/program cycles).</li>
+                                    <li><strong>Key Features:</strong> Useful during product development and debugging phases where firmware modifications are common. The quartz window and the need for a UV eraser add to the cost and inconvenience.</li>
+                                    <li><strong>Typical Use:</strong> Firmware development, older computer BIOS chips, and applications requiring occasional updates where out-of-circuit erasure is acceptable.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>EEPROM (Electrically Erasable Programmable Read-Only Memory):</strong></p>
+                                <ul>
+                                    <li><strong>Programming & Erasure:</strong> Can be programmed and erased electrically, often while still in the circuit (in-circuit programmable/erasable). Erasure can typically be done byte-wise or page-wise, rather than requiring the entire chip to be erased. This is typically achieved using Fowler-Nordheim tunneling to move electrons to and from the floating gate with a higher voltage.</li>
+                                    <li><strong>Reprogrammable:</strong> Yes, many times (typically tens of thousands to over a million erase/write cycles, depending on the specific technology).</li>
+                                    <li><strong>Key Features:</strong> More flexible and convenient than EPROMs as no UV light or removal from the circuit is needed for erasure. Write and erase operations are generally slower than RAM, and EEPROMs are more complex and thus more expensive per bit than EPROMs or flash memory.</li>
+                                    <li><strong>Typical Use:</strong> Storing configuration data that needs to be updated frequently but not constantly (e.g., BIOS in modern PCs, settings in microcontrollers, calibration data, data logging). Flash memory is a specific type of EEPROM that offers higher density and block-wise erasure and writing, making it popular for solid-state drives and memory cards.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>11. Implement a given Boolean function using a 4:1 MUX.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2023, W2021)</p>
+                    <div class="answer-section">
+                        <p>A Multiplexer (MUX) can be used as a universal logic element to implement Boolean functions. A 4:1 MUX has four data inputs (I<sub>0</sub>, I<sub>1</sub>, I<sub>2</sub>, I<sub>3</sub>), two select lines (S<sub>1</sub>, S<sub>0</sub>), and one output (Y). The combination of S<sub>1</sub>S<sub>0</sub> selects one of the four data inputs to be routed to the output Y.</p>
+                        <p>To implement an N-variable function using a MUX with M select lines, we generally choose M = N-1 variables for the select lines. The remaining variable(s) are then used to determine the connections to the MUX's data inputs (0, 1, the variable itself, or its complement).</p>
+
+                        <p><strong>Example: Implement the Boolean function F(A,B,C) = Σm(1, 2, 6, 7) using a 4:1 MUX.</strong></p>
+                        <p>Here, N=3 variables (A, B, C). We will use N-1 = 2 variables as select lines and 1 variable for the data inputs.</p>
+                        <ol>
+                            <li>
+                                <p><strong>Assign Select Lines and Data Input Variable:</strong></p>
+                                Let variables A and B be connected to the select lines S<sub>1</sub> and S<sub>0</sub> respectively.
+                                <ul>
+                                    <li>S<sub>1</sub> = A (Most Significant Select line)</li>
+                                    <li>S<sub>0</sub> = B (Least Significant Select line)</li>
+                                </ul>
+                                The remaining variable, C, will determine the values for the data inputs I<sub>0</sub>, I<sub>1</sub>, I<sub>2</sub>, and I<sub>3</sub>.
+                            </li>
+                            <li>
+                                <p><strong>Create the MUX Implementation Table:</strong></p>
+                                <p>This table helps determine how to connect each data input line (I<sub>0</sub> to I<sub>3</sub>) of the MUX. For each combination of the select lines (A, B), we analyze the function F based on the values of C.</p>
+                                <table>
+                                    <thead>
+                                        <tr><th>A (S<sub>1</sub>)</th><th>B (S<sub>0</sub>)</th><th>MUX Data Input Line</th><th>Relevant Minterms (for C=0, C=1)</th><th>Value of F (derived from minterms)</th><th>I<sub>i</sub> Connected to:</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0</td><td>0</td><td>I<sub>0</sub></td>
+                                            <td>m0 (A'B'C'), m1 (A'B'C)</td>
+                                            <td>F(000)=0 (m0 not in F)</td><td>F(001)=1 (m1 in F)</td>
+                                            <td><strong>C</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0</td><td>1</td><td>I<sub>1</sub></td>
+                                            <td>m2 (A'BC'), m3 (A'BC)</td>
+                                            <td>F(010)=1 (m2 in F)</td><td>F(011)=0 (m3 not in F)</td>
+                                            <td><strong>C'</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td><td>0</td><td>I<sub>2</sub></td>
+                                            <td>m4 (AB'C'), m5 (AB'C)</td>
+                                            <td>F(100)=0 (m4 not in F)</td><td>F(101)=0 (m5 not in F)</td>
+                                            <td><strong>0</strong> (Ground)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td><td>1</td><td>I<sub>3</sub></td>
+                                            <td>m6 (ABC'), m7 (ABC)</td>
+                                            <td>F(110)=1 (m6 in F)</td><td>F(111)=1 (m7 in F)</td>
+                                            <td><strong>1</strong> (V<sub>cc</sub>/Logic High)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p><strong>Derivation of Data Inputs:</strong></p>
+                                <ul>
+                                    <li><strong>For I<sub>0</sub> (A=0, B=0):</strong> We look at minterms m0 (A'B'C') and m1 (A'B'C). Since F includes m1 (A'B'C) but not m0 (A'B'C'), F is 1 when C=1 and 0 when C=0. Thus, F behaves like C. So, I<sub>0</sub> = C.</li>
+                                    <li><strong>For I<sub>1</sub> (A=0, B=1):</strong> We look at minterms m2 (A'BC') and m3 (A'BC). F includes m2 but not m3. F is 1 when C=0 and 0 when C=1. Thus, F behaves like C'. So, I<sub>1</sub> = C'.</li>
+                                    <li><strong>For I<sub>2</sub> (A=1, B=0):</strong> We look at minterms m4 (AB'C') and m5 (AB'C). F includes neither m4 nor m5. Thus, F is always 0 for this combination. So, I<sub>2</sub> = 0.</li>
+                                    <li><strong>For I<sub>3</sub> (A=1, B=1):</strong> We look at minterms m6 (ABC') and m7 (ABC). F includes both m6 and m7. Thus, F is always 1 for this combination. So, I<sub>3</sub> = 1.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>Draw the Logic Diagram:</strong></p>
+                                <div class="diagram-description">
+                                    <p>The diagram would show a 4x1 MUX block with data inputs I<sub>0</sub>, I<sub>1</sub>, I<sub>2</sub>, I<sub>3</sub>, select inputs S<sub>1</sub>, S<sub>0</sub>, and output Y (which is F).</p>
+                                    <ul>
+                                        <li>Select lines S<sub>1</sub> and S<sub>0</sub> are connected to A and B respectively.</li>
+                                        <li>Data Inputs:
+                                            <ul>
+                                                <li>I<sub>0</sub> is connected to input variable C.</li>
+                                                <li>I<sub>1</sub> is connected to C' (input C passed through a NOT gate).</li>
+                                                <li>I<sub>2</sub> is connected to Logic 0 (Ground).</li>
+                                                <li>I<sub>3</sub> is connected to Logic 1 (V<sub>cc</sub> or Logic High).</li>
+                                            </ul>
+                                        </li>
+                                        <li>The output Y of the MUX will implement the function F(A,B,C).</li>
+                                    </ul>
+                                    <img src="https://placehold.co/450x300/e2e8f0/4a5568?text=4x1+MUX+Implementation" alt="Logic Diagram of F(A,B,C) using 4x1 MUX">
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>12. Explain the working of a D flip-flop with logic diagram and timing diagram.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: W2024, S2022)</p>
+                    <div class="answer-section">
+                        <p>A <strong>D flip-flop (Data or Delay flip-flop)</strong> is a fundamental type of edge-triggered sequential logic circuit used for storing a single bit of information. It has one data input (D), a clock input (CLK), and typically two outputs: Q (the normal output representing the stored bit) and Q' (the complemented output).</p>
+                        
+                        <p><strong>Working Principle:</strong></p>
+                        <p>The core function of a D flip-flop is to capture the value of its D input and transfer this value to the Q output only on a specific transition (edge) of the clock signal. This transition can be either the positive (rising) edge or the negative (falling) edge, depending on the flip-flop's design.</p>
+                        <ul>
+                            <li>When the active clock edge arrives (e.g., CLK goes from LOW to HIGH for a positive edge-triggered DFF), the logic level present at the D input at that precise moment is sampled and becomes the new state of the Q output.</li>
+                            <li>Therefore, the next state of Q (Q<sub>n+1</sub>) is equal to the value of D at the clock edge: <strong>Q<sub>n+1</sub> = D</strong>.</li>
+                            <li>Between these active clock edges, the Q output remains stable and holds its previous value, regardless of any changes that might occur at the D input during this time. This characteristic makes it act like a "delay" element for the data, holding it until the next clock trigger.</li>
+                        </ul>
+                        <p>This behavior is crucial for building registers, memory cells, and for synchronizing signals in digital systems.</p>
+
+                        <p><strong>Characteristic Table & Equation:</strong></p>
+                        <p>The characteristic table shows the next state (Q<sub>n+1</sub>) based on the D input at the active clock edge.</p>
+                        <table>
+                            <thead>
+                                <tr><th>D (Input at active clock edge)</th><th>Q<sub>n+1</sub> (Next State)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td></tr>
+                                <tr><td>1</td><td>1</td></tr>
+                            </tbody>
+                        </table>
+                        <p>Characteristic Equation: <strong>Q<sub>n+1</sub> = D</strong></p>
+                        
+                        <p><strong>Logic Diagram:</strong></p>
+                        <div class="diagram-description">
+                            <p><strong>Block Symbol:</strong> A rectangle labeled "D FF" (or just "D") with an input labeled D, a clock input labeled CLK (often with a small triangle symbol '>' to indicate edge-triggering), and outputs labeled Q and Q'. A small bubble at the CLK input indicates negative-edge triggering; no bubble indicates positive-edge triggering.</p>
+                            <img src="images/4_mark/Q12_1.png" alt="Block symbol of a D Flip-Flop">
+                            <p><strong>Internal Structure (Conceptual using NAND gates for an edge-triggered DFF):</strong> An edge-triggered D flip-flop can be constructed from an SR latch with additional gating, or more commonly, using a master-slave configuration or specific gate arrangements that respond only to clock transitions. For instance, one common way to build an edge-triggered D flip-flop involves using several NAND gates to create a clocked SR latch core, with further gating to derive S and R from D and CLK to achieve the D-type behavior and edge sensitivity.</p>
+                            <img src="images/4_mark/Q12_2.webp" alt="Conceptual internal logic of an edge-triggered D Flip-Flop using NAND gates">
+                        </div>
+                        
+                        <p><strong>Timing Diagram (Example for a Positive Edge-Triggered D Flip-Flop):</strong></p>
+                        <div class="diagram-description">
+                            <p>A timing diagram would illustrate the signals over time:</p>
+                            <ul>
+                                <li><strong>CLK:</strong> A periodic square wave, with rising edges clearly marked as the active transitions.</li>
+                                <li><strong>D:</strong> The data input line, showing various changes in logic level (0s and 1s) over time. These changes can occur at any point relative to the clock.</li>
+                                <li><strong>Q:</strong> The output line. The Q output only changes its state immediately following a rising edge of the CLK. At this instant, Q will take on the value that the D input had just before (or at the setup time before) the rising clock edge. Q will then hold this value stable until the next rising clock edge, even if D changes in the interim.</li>
+                            </ul>
+                            <p>The diagram visually demonstrates Q "sampling" or "capturing" the state of D at each positive clock transition and holding that value until the next active edge.</p>
+                            <img src="images/4_mark/Q12_3.png" alt="Timing diagram for a D Flip-Flop">
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>13. Draw and explain a 1-bit magnitude comparator.</summary>
+                 <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2023, W2020)</p>
+                    <div class="answer-section">
+                        <p>A <strong>1-bit magnitude comparator</strong> is a combinational logic circuit that compares two single binary bits, A and B. It determines their relative magnitudes by producing three distinct outputs:</p>
+                        <ul>
+                            <li><strong>G (A > B):</strong> This output is logic 1 if bit A is greater than bit B, and 0 otherwise.</li>
+                            <li><strong>E (A = B):</strong> This output is logic 1 if bit A is equal to bit B, and 0 otherwise.</li>
+                            <li><strong>L (A < B):</strong> This output is logic 1 if bit A is less than bit B, and 0 otherwise.</li>
+                        </ul>
+
+                        <p><strong>Truth Table:</strong></p>
+                        <p>The behavior of the 1-bit comparator is defined by the following truth table:</p>
+                        <table>
+                            <thead>
+                                <tr><th>Input A</th><th>Input B</th><th>G (A>B)</th><th>E (A=B)</th><th>L (A<B)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                                <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>Boolean Expressions:</strong></p>
+                        <p>From the truth table, the Boolean expressions for each output are:</p>
+                        <ul>
+                            <li>For <strong>G (A > B)</strong>, the output is 1 only when A=1 and B=0.
+                                <br/>So, <strong>G = A ⋅ B'</strong> (A AND NOT B)
+                            </li>
+                            <li>For <strong>E (A = B)</strong>, the output is 1 when A=0 and B=0, OR when A=1 and B=1. This is the XNOR (equivalence) function.
+                                <br/>So, <strong>E = A'B' + AB = A ⊙ B</strong>
+                            </li>
+                            <li>For <strong>L (A < B)</strong>, the output is 1 only when A=0 and B=1.
+                                <br/>So, <strong>L = A' ⋅ B</strong> (NOT A AND B)
+                            </li>
+                        </ul>
+
+                        <p><strong>Logic Diagram:</strong></p>
+                        <div class="diagram-description">
+                            <p>The logic circuit to implement a 1-bit magnitude comparator using basic gates would consist of:</p>
+                            <ul>
+                                <li>Two inputs: A, B.</li>
+                                <li>Three outputs: G, E, L.</li>
+                                <li><strong>For G:</strong> An AND gate with inputs A and B' (B is inverted by a NOT gate).</li>
+                                <li><strong>For E:</strong> An XNOR gate with inputs A and B. (Alternatively, it can be realized using two AND gates and one OR gate for the SOP form A'B' + AB, requiring inverters for A' and B').</li>
+                                <li><strong>For L:</strong> An AND gate with inputs A' (A is inverted by a NOT gate) and B.</li>
+                            </ul>
+                            <p>The diagram would clearly show these gates connected to the inputs and producing the respective outputs.</p>
+                             <img src="images/4_mark/Q13.webp" alt="Logic Diagram of a 1-bit Magnitude Comparator">
+                        </div>
+                        <p>This 1-bit comparator forms the basic building block for larger N-bit comparators by cascading them.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>14. Convert a given SOP expression to its canonical POS form.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~1, Example Papers: W2023)</p>
+                    <div class="answer-section">
+                        <p>To convert a Boolean expression from Sum of Products (SOP) form to its **canonical Product of Sums (POS)** form, the following steps are generally taken:</p>
+                        <ol>
+                            <li>
+                                <strong>Expand to Canonical SOP (Sum of Minterms):</strong> If the given SOP expression is not already in its canonical form (a sum of minterms, where each product term contains all variables of the function), expand each product term by ANDing it with terms like (X + X'), where X is a missing variable in that term. After expansion, list the decimal equivalents of these minterms (where the function F evaluates to 1).
+                            </li>
+                            <li>
+                                <strong>Identify Missing Minterms (Minterms of F'):</strong> For an n-variable function, there are 2<sup>n</sup> possible minterms (from 0 to 2<sup>n</sup>-1). List all minterms that are *not* present in the canonical SOP expression of F. These missing minterms represent the input combinations for which the function F evaluates to 0. These are effectively the minterms of the complement function, F'.
+                            </li>
+                            <li>
+                                <strong>Obtain Maxterm Indices for F:</strong> The decimal indices of these missing minterms (where F=0) directly correspond to the indices of the maxterms for the original function F in its canonical POS form. (A maxterm M<sub>j</sub> is a sum term that evaluates to 0 only for the input combination corresponding to its index j).
+                            </li>
+                            <li>
+                                <strong>Write the Canonical POS Expression:</strong> For each index 'j' identified in Step 3, write the corresponding maxterm M<sub>j</sub>. A maxterm is formed by ORing all variables, where a variable appears in its true form if its value is 0 in the binary representation of index 'j', and in its complemented form if its value is 1 for that index. The canonical POS form is the product (ANDing) of all such maxterms.
+                            </li>
+                        </ol>
+
+                        <p><strong>Example: Convert F(A,B,C) = A'B + AB'C + ABC to its canonical POS form.</strong></p>
+                        <ol>
+                            <li><strong>Expand to Canonical SOP (find minterms of F):</strong>
+                                <ul>
+                                    <li>A'B = A'B(C+C') = A'BC + A'BC' → This corresponds to minterms m3 (011) and m2 (010).</li>
+                                    <li>AB'C → This is already a minterm: m5 (101).</li>
+                                    <li>ABC → This is already a minterm: m7 (111).</li>
+                                </ul>
+                                So, the function in terms of minterms is F(A,B,C) = Σm(2, 3, 5, 7).
+                            </li>
+                            <li><strong>Identify Missing Minterms (where F=0):</strong>
+                                For 3 variables (A,B,C), the full set of minterms is {m0, m1, m2, m3, m4, m5, m6, m7}.
+                                The minterms for which F=1 are {2, 3, 5, 7}.
+                                Therefore, the missing minterms (where F=0) are: {m0, m1, m4, m6}.
+                            </li>
+                            <li><strong>Maxterm Indices for F:</strong>
+                                The indices of the maxterms for F are the same as the indices of the missing minterms: 0, 1, 4, 6.
+                                So, F(A,B,C) = ΠM(0, 1, 4, 6).
+                            </li>
+                            <li><strong>Write the Canonical POS Expression:</strong>
+                                <ul>
+                                    <li>M0 (binary 000) → (A+B+C)</li>
+                                    <li>M1 (binary 001) → (A+B+C')</li>
+                                    <li>M4 (binary 100) → (A'+B+C)</li>
+                                    <li>M6 (binary 110) → (A'+B'+C)</li>
+                                </ul>
+                                Therefore, F(A,B,C) = <strong>(A+B+C) ⋅ (A+B+C') ⋅ (A'+B+C) ⋅ (A'+B'+C)</strong>.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>15. Explain Hamming code with an example for single-bit error detection and correction.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2024, W2022)</p>
+                    <div class="answer-section">
+                        <p><strong>Hamming Code</strong> is a type of linear block code used for error detection and correction in digital data transmission or storage. It is specifically designed to detect up to two-bit errors or correct single-bit errors. This is achieved by adding redundant **parity bits** to the original data bits at specific positions within the codeword.</p>
+                        
+                        <p><strong>Key Concepts:</strong></p>
+                        <ul>
+                            <li><strong>Parity Bits (p):</strong> These are redundant bits added to the data. Their values are determined based on the data bits.</li>
+                            <li><strong>Data Bits (m):</strong> These are the original message bits that need to be transmitted or stored.</li>
+                            <li><strong>Codeword Length (n):</strong> The total length of the Hamming codeword is n = m + p.</li>
+                            <li><strong>Parity Bit Positions:</strong> Parity bits (P) are placed at positions that are powers of 2 (i.e., position 1, 2, 4, 8, ...). Data bits (D) fill the remaining positions.</li>
+                            <li><strong>Parity Check:</strong> Each parity bit is responsible for checking a unique set of bit positions in the codeword (including itself). The value of the parity bit (0 or 1) is chosen to ensure that the total number of 1s in the positions it checks is either always even (for an even parity scheme) or always odd (for an odd parity scheme).</li>
+                        </ul>
+                        
+                        <p><strong>Determining the Number of Parity Bits:</strong></p>
+                        <p>For a code that can correct all single-bit errors, the number of parity bits 'p' required for 'm' data bits must satisfy the following inequality:</p>
+                        <p class="code-block">2<sup>p</sup> ≥ m + p + 1</p>
+                        <p>This inequality ensures that there are enough unique syndrome values (combinations of parity check outcomes) to identify every possible single-bit error location (including an error in a parity bit itself) plus the no-error condition.</p>
+                        
+                        <p><strong>Example: Generating a (7,4) Hamming Code for 4 data bits D<sub>data1</sub>, D<sub>data2</sub>, D<sub>data3</sub>, D<sub>data4</sub> using even parity.</strong></p>
+                        <p>Let m=4 data bits. We need to find 'p'.
+                        If p=2, 2<sup>2</sup> = 4, and m+p+1 = 4+2+1 = 7. Since 4 < 7, p=2 is not enough.
+                        If p=3, 2<sup>3</sup> = 8, and m+p+1 = 4+3+1 = 8. Since 8 ≥ 8, p=3 is sufficient.
+                        So, we need 3 parity bits (P<sub>1</sub>, P<sub>2</sub>, P<sub>4</sub>). The total codeword length n = m+p = 4+3 = 7 bits.</p>
+                        <p>The positions in the 7-bit codeword are (P=Parity, D=Data):
+                        <br/>Position: 1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7
+                        <br/>Bit: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P<sub>1</sub>&nbsp;&nbsp;P<sub>2</sub>&nbsp;&nbsp;D<sub>a</sub>&nbsp;&nbsp;P<sub>3</sub>&nbsp;&nbsp;D<sub>b</sub>&nbsp;&nbsp;D<sub>c</sub>&nbsp;&nbsp;D<sub>d</sub>
+                        <br/>(Mapping data bits D<sub>a</sub>,D<sub>b</sub>,D<sub>c</sub>,D<sub>d</sub> to standard Hamming positions D<sub>3</sub>,D<sub>5</sub>,D<sub>6</sub>,D<sub>7</sub> and parity bits P<sub>1</sub>,P<sub>2</sub>,P<sub>3</sub> to P<sub>1</sub>,P<sub>2</sub>,P<sub>4</sub> based on their power-of-2 positions.)
+                        <br/>So, Codeword: P<sub>1</sub> P<sub>2</sub> D<sub>3</sub> P<sub>4</sub> D<sub>5</sub> D<sub>6</sub> D<sub>7</sub></p>
+                        <ol>
+                            <li><strong>Parity Bit Calculations (Even Parity):</strong> Each parity bit checks positions whose binary representation has a '1' in the parity bit's own position.
+                                <ul>
+                                    <li><strong>P<sub>1</sub> (Position 1 - 001):</strong> Checks bits at positions 1, 3, 5, 7. For even parity: P<sub>1</sub> ⊕ D<sub>3</sub> ⊕ D<sub>5</sub> ⊕ D<sub>7</sub> = 0</li>
+                                    <li><strong>P<sub>2</sub> (Position 2 - 010):</strong> Checks bits at positions 2, 3, 6, 7. For even parity: P<sub>2</sub> ⊕ D<sub>3</sub> ⊕ D<sub>6</sub> ⊕ D<sub>7</sub> = 0</li>
+                                    <li><strong>P<sub>4</sub> (Position 4 - 100):</strong> Checks bits at positions 4, 5, 6, 7. For even parity: P<sub>4</sub> ⊕ D<sub>5</sub> ⊕ D<sub>6</sub> ⊕ D<sub>7</sub> = 0</li>
+                                </ul>
+                            </li>
+                            <li><strong>Let the 4-bit data be 1011</strong> (Assume this is D<sub>3</sub>D<sub>5</sub>D<sub>6</sub>D<sub>7</sub> = 1011; so D<sub>3</sub>=1, D<sub>5</sub>=0, D<sub>6</sub>=1, D<sub>7</sub>=1).
+                                <ul>
+                                    <li>P<sub>1</sub> = D<sub>3</sub> ⊕ D<sub>5</sub> ⊕ D<sub>7</sub> = 1 ⊕ 0 ⊕ 1 = 0</li>
+                                    <li>P<sub>2</sub> = D<sub>3</sub> ⊕ D<sub>6</sub> ⊕ D<sub>7</sub> = 1 ⊕ 1 ⊕ 1 = 1</li>
+                                    <li>P<sub>4</sub> = D<sub>5</sub> ⊕ D<sub>6</sub> ⊕ D<sub>7</sub> = 0 ⊕ 1 ⊕ 1 = 0</li>
+                                </ul>
+                                The transmitted Hamming codeword (P<sub>1</sub>P<sub>2</sub>D<sub>3</sub>P<sub>4</sub>D<sub>5</sub>D<sub>6</sub>D<sub>7</sub>) is <strong>0110011</strong>.
+                            </li>
+                        </ol>
+
+                        <p><strong>Error Detection and Correction:</strong></p>
+                        <p>At the receiver, three check bits (C<sub>1</sub>, C<sub>2</sub>, C<sub>4</sub> corresponding to P<sub>1</sub>, P<sub>2</sub>, P<sub>4</sub>) are recalculated using the received bits (P<sub>1r</sub>, P<sub>2r</sub>, D<sub>3r</sub>, P<sub>4r</sub>, D<sub>5r</sub>, D<sub>6r</sub>, D<sub>7r</sub>) and the same even parity logic.</p>
+                        <ul>
+                            <li>C<sub>1</sub> = P<sub>1r</sub> ⊕ D<sub>3r</sub> ⊕ D<sub>5r</sub> ⊕ D<sub>7r</sub></li>
+                            <li>C<sub>2</sub> = P<sub>2r</sub> ⊕ D<sub>3r</sub> ⊕ D<sub>6r</sub> ⊕ D<sub>7r</sub></li>
+                            <li>C<sub>4</sub> = P<sub>4r</sub> ⊕ D<sub>5r</sub> ⊕ D<sub>6r</sub> ⊕ D<sub>7r</sub></li>
+                        </ul>
+                        <p>The binary number formed by C<sub>4</sub>C<sub>2</sub>C<sub>1</sub> is called the **syndrome word**.
+                        If the syndrome is 000, no single-bit error is detected.
+                        If the syndrome is non-zero, its decimal value indicates the bit position that is in error. The bit at that position is then flipped (complemented) to correct the error.</p>
+                        <p><strong>Example with Error:</strong> Suppose the transmitted code 0110011 was received as <strong>0110111</strong> (error in D<sub>5</sub>, which is at actual bit position 5).</p>
+                        <ul>
+                            <li>Received: P<sub>1r</sub>=0, P<sub>2r</sub>=1, D<sub>3r</sub>=1, P<sub>4r</sub>=0, D<sub>5r</sub>=1, D<sub>6r</sub>=1, D<sub>7r</sub>=1</li>
+                            <li>C<sub>1</sub> = 0 ⊕ 1 ⊕ 1 ⊕ 1 = 1</li>
+                            <li>C<sub>2</sub> = 1 ⊕ 1 ⊕ 1 ⊕ 1 = 0</li>
+                            <li>C<sub>4</sub> = 0 ⊕ 1 ⊕ 1 ⊕ 1 = 1</li>
+                        </ul>
+                        <p>Syndrome word (C<sub>4</sub>C<sub>2</sub>C<sub>1</sub>) = 101<sub>binary</sub> = 5<sub>decimal</sub>. This indicates an error in bit position 5. Flipping the 5th bit of the received codeword (D<sub>5r</sub> from 1 to 0) corrects the error, resulting in the original codeword 0110011.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>16. Design a half subtractor circuit with truth table and logic diagram.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: W2024, S2023)</p>
+                    <div class="answer-section">
+                        <p>A <strong>Half Subtractor</strong> is a fundamental combinational logic circuit that performs the subtraction of two single binary bits. It has two inputs: A (the minuend) and B (the subtrahend). It produces two outputs: <strong>Difference (D)</strong> and <strong>Borrow (B<sub>out</sub>)</strong>.</p>
+                        <p>The subtraction operation for two bits A and B can be thought of as A - B.</p>
+                        
+                        <p><strong>Truth Table:</strong></p>
+                        <p>The operation of the half subtractor is defined by its truth table, which lists all possible input combinations and their corresponding outputs:</p>
+                        <table>
+                            <thead>
+                                <tr><th>Input A (Minuend)</th><th>Input B (Subtrahend)</th><th>Difference (D)</th><th>Borrow (B<sub>out</sub>)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                                <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                                <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Explanation of Truth Table Rows:</strong></p>
+                        <ul>
+                            <li><strong>Row 1 (A=0, B=0):</strong> 0 - 0 = 0. So, Difference D = 0, and no borrow is needed, B<sub>out</sub> = 0.</li>
+                            <li><strong>Row 2 (A=0, B=1):</strong> 0 - 1. We cannot subtract 1 from 0 directly in binary without a borrow. So, a borrow (B<sub>out</sub> = 1) is generated from the next higher significant stage (conceptually). With a borrow, the minuend '0' effectively becomes '10' (binary 2). So, 10 - 1 = 1 (binary). Thus, Difference D = 1.</li>
+                            <li><strong>Row 3 (A=1, B=0):</strong> 1 - 0 = 1. So, Difference D = 1, and no borrow is needed, B<sub>out</sub> = 0.</li>
+                            <li><strong>Row 4 (A=1, B=1):</strong> 1 - 1 = 0. So, Difference D = 0, and no borrow is needed, B<sub>out</sub> = 0.</li>
+                        </ul>
+
+                        <p><strong>Boolean Expressions (derived from the Truth Table):</strong></p>
+                        <p>We can derive the Boolean expressions for Difference (D) and Borrow (B<sub>out</sub>) by observing the truth table or using K-maps (though for 2 variables, direct observation is often sufficient).</p>
+                        <ul>
+                            <li><strong>For Difference (D):</strong>
+                                The output D is 1 when A=0, B=1 OR when A=1, B=0. This is the definition of the exclusive-OR (XOR) operation.
+                                <br/>D = A'B + AB'
+                                <br/>Therefore, <strong>D = A ⊕ B</strong>
+                            </li>
+                            <li><strong>For Borrow (B<sub>out</sub>):</strong>
+                                The output B<sub>out</sub> is 1 only when input A is 0 and input B is 1.
+                                <br/>Therefore, <strong>B<sub>out</sub> = A' ⋅ B</strong>
+                            </li>
+                        </ul>
+
+                        <p><strong>Logic Diagram:</strong></p>
+                        <p>The half subtractor circuit can be implemented using one XOR gate, one NOT gate, and one AND gate.</p>
+                        <div class="diagram-description">
+                            <p>The logic diagram would show:</p>
+                            <ul>
+                                <li>Two input lines: A and B.</li>
+                                <li>Two output lines: D and B<sub>out</sub>.</li>
+                                <li>Input A is connected to one input of an XOR gate and also to the input of a NOT gate.</li>
+                                <li>Input B is connected to the other input of the XOR gate and to one input of an AND gate.</li>
+                                <li>The output of the NOT gate (which is A') is connected to the other input of the AND gate.</li>
+                                <li>The output of the XOR gate is the Difference (D).</li>
+                                <li>The output of the AND gate is the Borrow (B<sub>out</sub>).</li>
+                            </ul>
+                             <img src="images/4_mark/Q16.png" alt="Logic Diagram of a Half Subtractor">
+                        </div>
+                         <p><strong>Significance:</strong> The half subtractor is a basic arithmetic circuit. While it can subtract two single bits, it doesn't account for a borrow from a previous (less significant) bit stage. For multi-bit subtraction, Full Subtractors are required, which are typically built using half subtractors.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>17. Explain the operation of a Tri-state buffer and its application.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~1, Example Papers: W2021)</p>
+                    <div class="answer-section">
+                        <p>A **Tri-state buffer** (also known as a three-state buffer or tri-state gate) is a special type of digital logic gate that has three possible output states: logic HIGH (1), logic LOW (0), and a **High-Impedance (Hi-Z or High-Z)** state.</p>
+                        
+                        <p><strong>Operation:</strong></p>
+                        <p>A tri-state buffer has a data input (A), a data output (Y), and an additional control input called the **Enable (E)** input (sometimes labeled OE for Output Enable, or G for Gate). The logic level applied to this Enable input determines the operational mode of the buffer:</p>
+                        <ul>
+                            <li>
+                                <strong>Enabled State:</strong> When the Enable input (E) is active (this could be E=1 for an active-high enable, or E=0 for an active-low enable, depending on the specific buffer design), the buffer functions like a normal buffer or an inverter.
+                                <ul>
+                                    <li>If it is a <em>non-inverting tri-state buffer</em>, the output Y directly follows the input A (i.e., Y = A).</li>
+                                    <li>If it is an <em>inverting tri-state buffer</em>, the output Y is the logical complement of the input A (i.e., Y = A').</li>
+                                </ul>
+                                In this enabled state, the buffer actively drives the output line to either a logic HIGH or a logic LOW level with a low output impedance.
+                            </li>
+                            <li>
+                                <strong>Disabled State (High-Impedance State):</strong> When the Enable input (E) is inactive, the output Y of the buffer enters the High-Impedance (Hi-Z) state. In this state:
+                                <ul>
+                                    <li>The output terminal is effectively disconnected from both the internal circuitry that would normally drive it and from the power supply rails (V<sub>CC</sub>/V<sub>DD</sub> and Ground).</li>
+                                    <li>It presents a very high impedance to the circuit or bus line it is connected to.</li>
+                                    <li>It neither sources current (to pull the line HIGH) nor sinks current (to pull the line LOW). It essentially behaves like an open switch or an open circuit.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>Truth Table (for a non-inverting tri-state buffer with active-high enable E):</strong></p>
+                        <table>
+                            <thead>
+                                <tr><th>Enable (E)</th><th>Input (A)</th><th>Output (Y)</th><th>Output State Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0 (Inactive)</td><td>0</td><td>Hi-Z</td><td>Disabled / High-Impedance</td></tr>
+                                <tr><td>0 (Inactive)</td><td>1</td><td>Hi-Z</td><td>Disabled / High-Impedance</td></tr>
+                                <tr><td>1 (Active)</td><td>0</td><td>0</td><td>Enabled (Output follows Input A)</td></tr>
+                                <tr><td>1 (Active)</td><td>1</td><td>1</td><td>Enabled (Output follows Input A)</td></tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>Logic Symbol:</strong></p>
+                        <div class="diagram-description">
+                            <p>The standard logic symbol for a non-inverting tri-state buffer is a triangle (like a normal buffer) pointing from the data input A to the data output Y. There is an additional control input line, typically labeled 'E' or 'OE', entering from one of the sides of the triangle (often the top or bottom). An active-low enable is usually indicated by a bubble on the enable input at the gate symbol. An inverting tri-state buffer would additionally have an inversion bubble at the output tip of the triangle.</p>
+                            <img src="images/4_mark/Q17.PNG" alt="Logic Symbol of a Tri-State Buffer">
+                        </div>
+
+                        <p><strong>Key Application: Bus Systems</strong></p>
+                        <p>The most significant application of tri-state buffers is in designing **bus-organized systems**, where multiple devices (like microprocessors, memory chips, I/O peripherals) need to share a common set of data lines (a data bus). </p>
+                        <ul>
+                            <li>By connecting the outputs of multiple devices to the common bus through tri-state buffers, a control mechanism can ensure that only one device's buffer is enabled at any given time to transmit data onto the bus.</li>
+                            <li>The tri-state buffers of all other devices connected to the same bus are kept in the disabled (Hi-Z) state. This prevents **bus contention**, which occurs if multiple devices attempt to drive the bus simultaneously to different logic levels. Bus contention can lead to incorrect data transmission, unpredictable bus voltage levels, or even physical damage to the devices due to excessive current.</li>
+                            <li>Thus, tri-state buffers allow multiple sources to be connected to a single destination line or bus, with a selection mechanism determining which source is currently active.</li>
+                        </ul>
+                        <p>Other applications include implementing multiplexers and creating bidirectional communication lines.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>18. What is a ring counter? Explain its working with a diagram for 3 bits.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2024, W2020)</p>
+                    <div class="answer-section">
+                        <p>A **Ring Counter** is a type of sequential logic circuit formed by connecting a series of flip-flops (typically D-type or JK-type) in a shift register configuration, where the output of the last flip-flop is fed back to the input of the first flip-flop. This creates a closed loop or "ring" structure. In its standard form, a ring counter circulates a single '1' bit (often referred to as a "token" or "active bit") through the stages, with all other bits being '0'.</p>
+                        
+                        <p><strong>Structure and Diagram (3-bit Ring Counter using D Flip-Flops):</strong></p>
+                        <p>A 3-bit ring counter requires three D flip-flops (let's call them FF<sub>0</sub>, FF<sub>1</sub>, and FF<sub>2</sub>, with outputs Q<sub>0</sub>, Q<sub>1</sub>, and Q<sub>2</sub> respectively).</p>
+                        <ul>
+                            <li>The D input of FF<sub>0</sub> (D<sub>0</sub>) is connected to the Q output of FF<sub>2</sub> (Q<sub>2</sub>).</li>
+                            <li>The Q output of FF<sub>0</sub> (Q<sub>0</sub>) is connected to the D input of FF<sub>1</sub> (D<sub>1</sub>).</li>
+                            <li>The Q output of FF<sub>1</sub> (Q<sub>1</sub>) is connected to the D input of FF<sub>2</sub> (D<sub>2</sub>).</li>
+                            <li>All flip-flops share a common **Clock (CLK)** input.</li>
+                            <li>**Initialization:** It is crucial to initialize the counter to a valid starting state, typically with a single '1' loaded into one flip-flop and '0's in the others (e.g., Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub> = 100). This can be achieved using the Preset (PRE) and Clear (CLR) inputs of the flip-flops, or through a separate loading mechanism. If not initialized correctly (e.g., all 0s), a simple ring counter might remain in that state or enter an undesired sequence.</li>
+                        </ul>
+
+                        <div class="diagram-description">
+                            <p><strong>Logic Diagram (3-bit):</strong></p>
+                            <p>The diagram would show three D flip-flop blocks (FF<sub>0</sub>, FF<sub>1</sub>, FF<sub>2</sub>) arranged sequentially.</p>
+                            <ul>
+                                <li>The output Q<sub>2</sub> of the last flip-flop (FF<sub>2</sub>) is connected back to the D input of the first flip-flop (FF<sub>0</sub>).</li>
+                                <li>The output Q<sub>0</sub> of FF<sub>0</sub> connects to the D input of FF<sub>1</sub>.</li>
+                                <li>The output Q<sub>1</sub> of FF<sub>1</sub> connects to the D input of FF<sub>2</sub>.</li>
+                                <li>A common CLK line is connected to the clock input (usually marked with a '>' for edge-triggering) of all three flip-flops.</li>
+                                <li>The outputs of the counter are Q<sub>0</sub>, Q<sub>1</sub>, and Q<sub>2</sub>.</li>
+                            </ul>
+                            <img src="images/4_mark/Q18.png" alt="Logic Diagram of a 3-bit Ring Counter using D Flip-Flops">
+                        </div>
+
+                        <p><strong>Working Principle and State Sequence:</strong></p>
+                        <p>Assume the counter is initialized to the state Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub> = 100 (meaning FF<sub>0</sub> is set, FF<sub>1</sub> and FF<sub>2</sub> are reset).</p>
+                        <ol>
+                            <li><strong>Initial State:</strong> (Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub>) = <strong>100</strong>.
+                                <ul><li>Inputs for next clock edge: D<sub>0</sub>=Q<sub>2</sub>=0, D<sub>1</sub>=Q<sub>0</sub>=1, D<sub>2</sub>=Q<sub>1</sub>=0.</li></ul>
+                            </li>
+                            <li><strong>After 1st Active Clock Edge:</strong>
+                                <ul>
+                                    <li>Q<sub>0</sub> (output of FF<sub>0</sub>) becomes D<sub>0</sub> = 0.</li>
+                                    <li>Q<sub>1</sub> (output of FF<sub>1</sub>) becomes D<sub>1</sub> = 1.</li>
+                                    <li>Q<sub>2</sub> (output of FF<sub>2</sub>) becomes D<sub>2</sub> = 0.</li>
+                                </ul>
+                                New State: (Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub>) = <strong>010</strong>. The '1' has shifted one position.
+                            </li>
+                            <li><strong>After 2nd Active Clock Edge:</strong>
+                                <ul>
+                                    <li>Inputs for this edge: D<sub>0</sub>=Q<sub>2</sub>=0, D<sub>1</sub>=Q<sub>0</sub>=0, D<sub>2</sub>=Q<sub>1</sub>=1.</li>
+                                    <li>Q<sub>0</sub> becomes 0, Q<sub>1</sub> becomes 0, Q<sub>2</sub> becomes 1.</li>
+                                </ul>
+                                New State: (Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub>) = <strong>001</strong>.
+                            </li>
+                            <li><strong>After 3rd Active Clock Edge:</strong>
+                                <ul>
+                                    <li>Inputs for this edge: D<sub>0</sub>=Q<sub>2</sub>=1, D<sub>1</sub>=Q<sub>0</sub>=0, D<sub>2</sub>=Q<sub>1</sub>=0.</li>
+                                    <li>Q<sub>0</sub> becomes 1, Q<sub>1</sub> becomes 0, Q<sub>2</sub> becomes 0.</li>
+                                </ul>
+                                New State: (Q<sub>0</sub>Q<sub>1</sub>Q<sub>2</sub>) = <strong>100</strong>. (The counter returns to the initial state).
+                            </li>
+                        </ol>
+                        <p>The sequence of states for this 3-bit ring counter, correctly initialized to 100, is:
+                        <strong>100 → 010 → 001 → 100 ...</strong>
+                        This counter has 3 unique states in its cycle, so it is a MOD-3 counter. In general, an N-bit ring counter (when circulating a single '1') is a MOD-N counter, meaning it has N distinct states.</p>
+
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Generating timing and control signals for sequencing operations where events must occur in a specific, repeating order.</li>
+                            <li>Used in stepper motor controllers or for selecting one out of N devices or processes sequentially.</li>
+                            <li>Frequency division (divides the clock frequency by N, where N is the number of flip-flops).</li>
+                        </ul>
+                        <p><strong>Note:</strong> Ring counters are not very efficient in terms of state utilization (N states for N flip-flops). A Johnson counter (or twisted ring counter) is a modification that provides 2N states with N flip-flops.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>19. Explain weighted resistor D/A converter with its limitations.</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~2, Example Papers: S2023, W2022)</p>
+                    <div class="answer-section">
+                        <p>A **Weighted Resistor Digital-to-Analog Converter (DAC)** is a type of DAC that produces an analog output voltage (or current) that is proportional to the input digital binary word. It uses a set of resistors whose values are binary weighted according to the significance of the bit they represent. These weighted currents (or voltages) are then summed, typically using an operational amplifier (op-amp) in a summing amplifier configuration, to produce an analog output.</p>
+
+                        <p><strong>Structure and Operation:</strong></p>
+                        <p>For an n-bit digital input (B<sub>n-1</sub> (MSB), B<sub>n-2</sub>, ..., B<sub>0</sub> (LSB)), the circuit typically involves:</p>
+                        <ul>
+                            <li>An operational amplifier (op-amp) configured as a summing amplifier (usually in an inverting configuration).</li>
+                            <li>A set of 'n' input resistors. The resistor R<sub>i</sub> corresponding to bit B<sub>i</sub> has a value that is inversely proportional to its binary weight. A common scheme is:
+                                <ul>
+                                    <li>Resistor for MSB (B<sub>n-1</sub>): R</li>
+                                    <li>Resistor for B<sub>n-2</sub>: 2R</li>
+                                    <li>Resistor for B<sub>n-3</sub>: 4R</li>
+                                    <li>...</li>
+                                    <li>Resistor for LSB (B<sub>0</sub>): 2<sup>n-1</sup>R</li>
+                                </ul>
+                            </li>
+                            <li>Each digital input bit B<sub>i</sub> controls an electronic switch. If B<sub>i</sub> is '1', its corresponding weighted resistor R<sub>i</sub> is connected to a reference voltage (V<sub>ref</sub>). If B<sub>i</sub> is '0', R<sub>i</sub> is typically connected to ground.</li>
+                            <li>All these switched, weighted resistors are connected to the inverting input (summing junction, which is a virtual ground) of the op-amp.</li>
+                            <li>The op-amp has a feedback resistor (R<sub>f</sub>).</li>
+                        </ul>
+                        <p>The current flowing through each resistor connected to V<sub>ref</sub> (when its bit is 1) is I<sub>i</sub> = V<sub>ref</sub> / R<sub>i</sub>. The op-amp sums these currents, and due to the virtual ground at the inverting input, the output voltage V<sub>out</sub> = -I<sub>total</sub> ⋅ R<sub>f</sub>.</p>
+                        <p>If R<sub>f</sub> is chosen equal to R (the MSB resistor value), the output voltage can be expressed as:</p>
+                        <p><strong>V<sub>out</sub> = -V<sub>ref</sub> ⋅ (B<sub>n-1</sub> + B<sub>n-2</sub>/2 + B<sub>n-3</sub>/4 + ... + B<sub>0</sub>/2<sup>n-1</sup>)</strong></p>
+                        <p>This shows that the analog output voltage is a sum of binary weighted contributions from the digital inputs.</p>
+
+                        <div class="diagram-description">
+                            <p><strong>Conceptual Diagram (e.g., for a 4-bit DAC):</strong></p>
+                            <p>The diagram would show an op-amp in an inverting configuration.
+                            <ul>
+                                <li>The non-inverting input (+) is grounded.</li>
+                                <li>A feedback resistor R<sub>f</sub> is connected from the output V<sub>out</sub> to the inverting input (-).</li>
+                                <li>Four input paths connect to the inverting input (-):
+                                    <ul>
+                                        <li>Bit B<sub>3</sub> (MSB) controls a switch connecting V<sub>ref</sub> or Ground to a resistor R.</li>
+                                        <li>Bit B<sub>2</sub> controls a switch connecting V<sub>ref</sub> or Ground to a resistor 2R.</li>
+                                        <li>Bit B<sub>1</sub> controls a switch connecting V<sub>ref</sub> or Ground to a resistor 4R.</li>
+                                        <li>Bit B<sub>0</sub> (LSB) controls a switch connecting V<sub>ref</sub> or Ground to a resistor 8R.</li>
+                                    </ul>
+                                </li>
+                                <li>The output of the op-amp is V<sub>out</sub>.</li>
+                                <img src="images/4_mark/Q19.jpg" alt="Weighted Resistor DAC block diagram">
+                            </ul>
+                            </p>
+                        </div>
+
+                        <p><strong>Limitations:</strong></p>
+                        <ol>
+                            <li><strong>Wide Range of Resistor Values:</strong> This is the most significant limitation. For an n-bit DAC, the ratio between the LSB resistor value (2<sup>n-1</sup>R) and the MSB resistor value (R) is 2<sup>n-1</sup>. For example, in an 8-bit DAC, this ratio is 128:1. It is very difficult and expensive to fabricate such a wide range of resistor values with high precision and ensure they track each other accurately with temperature changes.</li>
+                            <li><strong>Accuracy and Precision Issues:</strong> The overall accuracy of the DAC heavily depends on the absolute precision of each individual resistor value. Small percentage deviations in resistor values, especially for the resistors corresponding to the more significant bits (which have smaller resistance values and thus pass larger currents), cause significant errors in the analog output and can lead to non-monotonic behavior (where an increasing digital code might not always produce an increasing analog output).</li>
+                            <li><strong>Switch Resistance Effects:</strong> The 'on' resistance of the analog switches used to connect resistors to V<sub>ref</sub> or ground can become significant compared to the smaller resistor values (those for MSBs), introducing errors in the current division.</li>
+                            <li><strong>Manufacturing Difficulty for High Resolution:</strong> Due to the wide range of resistor values and the stringent precision requirements, it is challenging to manufacture high-resolution (e.g., greater than 8-10 bits) weighted resistor DACs cost-effectively as integrated circuits.</li>
+                            <li><strong>Speed Limitation:</strong> Stray capacitances associated with large resistor values can also limit the operating speed of the DAC, as different RC time constants are formed for each bit path.</li>
+                        </ol>
+                        <p>Because of these significant limitations, other DAC architectures like the R-2R ladder DAC (which uses only two resistor values) are often preferred, especially for applications requiring higher resolution and better precision.</p>
+                    </div>
+                </div>
+            </details>
+
+            <details class="qa-block">
+                <summary>20. Draw and explain the block diagram of a generic Arithmetic Logic Unit (ALU).</summary>
+                <div class="answer-container">
+                    <p class="citation-info">(Illustrative Frequency: ~1, Example Papers: W2024)</p>
+                    <div class="answer-section">
+                        <p>An **Arithmetic Logic Unit (ALU)** is a fundamental digital circuit component within a central processing unit (CPU) or microprocessor. Its primary function is to perform arithmetic operations (such as addition, subtraction, increment, decrement) and bitwise logic operations (such as AND, OR, XOR, NOT) on binary data.</p>
+
+                        <p><strong>Generic Block Diagram of an ALU:</strong></p>
+                        <div class="diagram-description">
+                            <p>A typical block diagram of an n-bit ALU would show a rectangular block labeled "ALU" with several sets of inputs and outputs:</p>
+                            <p><strong>Inputs:</strong></p>
+                            <ul>
+                                <li><strong>Operand A:</strong> An n-bit data input bus (e.g., A<sub>n-1</sub> ... A<sub>0</sub>). This is one of the numbers on which the operation will be performed.</li>
+                                <li><strong>Operand B:</strong> A second n-bit data input bus (e.g., B<sub>n-1</sub> ... B<sub>0</sub>). This is the other number for the operation.</li>
+                                <li><strong>Operation Select (or Function Select) Lines (S<sub>k</sub> ... S<sub>0</sub>):</strong> A set of 'k+1' control lines. The binary code applied to these lines by the CPU's control unit determines which specific arithmetic or logic operation the ALU should perform (e.g., if k+1 = 3, up to 2<sup>3</sup> = 8 different operations can be selected).</li>
+                                <li><strong>Mode Control (M) (Optional but common):</strong> A single control input that often differentiates between arithmetic operations (e.g., M=0) and logic operations (e.g., M=1). This can simplify the decoding of the Operation Select lines or expand the number of functions.</li>
+                                <li><strong>Carry-In (C<sub>in</sub>):</strong> A single-bit input used primarily for arithmetic operations, such as the carry from a previous stage in multi-byte addition or the borrow in subtraction (often subtraction is implemented as addition with a complemented operand and C<sub>in</sub>=1).</li>
+                            </ul>
+                            <p><strong>Outputs:</strong></p>
+                            <ul>
+                                <li><strong>Result (F or R):</strong> An n-bit output bus (e.g., F<sub>n-1</sub> ... F<sub>0</sub>) that provides the result of the performed operation.</li>
+                                <li><strong>Status Flags:</strong> A set of single-bit outputs that provide information about the outcome of the operation. These flags are typically stored in a processor status register (or flags register) and are used by the control unit for conditional branching and other control flow decisions. Common flags include:
+                                    <ul>
+                                        <li><strong>Carry-Out (C<sub>out</sub> or C<sub>n+1</sub>):</strong> Set to 1 if an arithmetic operation (like addition) results in a carry out of the most significant bit position. It is also used to indicate a borrow in subtraction.</li>
+                                        <li><strong>Zero (Z):</strong> Set to 1 if the result F is all zeros (i.e., F = 0); otherwise, it is 0.</li>
+                                        <li><strong>Sign (S or N for Negative):</strong> Typically reflects the state of the most significant bit (MSB) of the result F. In signed number representations (like 2's complement), this bit indicates the sign of the result (1 for negative, 0 for positive).</li>
+                                        <li><strong>Overflow (V or O):</strong> Set to 1 if an arithmetic operation on signed numbers results in a value that is too large or too small to be represented correctly in n bits (e.g., adding two large positive numbers yields a negative result, or vice-versa). This flag is distinct from the Carry-Out flag.</li>
+                                        <li><strong>Parity (P) (Optional):</strong> Indicates whether the number of 1s in the result is even or odd.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>The diagram would depict a central rectangular block labeled "ALU". Input lines for Operands A and B, Carry-In, and Operation Select would enter the ALU. Output lines for Result F and the various Status Flags would exit the ALU.</p>
+                             <img src="images/4_mark/Q20.png" alt="Block diagram of a generic ALU">
+                        </div>
+
+                        <p><strong>Explanation of Operation:</strong></p>
+                        <ol>
+                            <li>The two n-bit binary operands (A and B) are loaded into input registers or directly supplied to the ALU's data inputs.</li>
+                            <li>The CPU's control unit sends a specific binary code (opcode) to the ALU's Operation Select lines (and Mode Control, if present). This code instructs the ALU which operation to perform.</li>
+                            <li>Based on this operation code, internal control logic within the ALU activates the appropriate internal circuitry. For example, if an addition is selected, the operands are routed to an adder circuit. If a logical AND is selected, they are routed to an array of AND gates.</li>
+                            <li>The selected internal unit performs the chosen operation on Operands A and B (utilizing C<sub>in</sub> if it's an arithmetic operation).</li>
+                            <li>The n-bit result of this operation is produced and made available on the Result (F) output bus.</li>
+                            <li>Simultaneously, based on the operation performed and the result obtained, the various status flags (C<sub>out</sub>, Z, S, V) are updated. These flags are crucial for program control flow (e.g., conditional jumps).</li>
+                        </ol>
+                        <p>For instance, if A=0101, B=0011, C<sub>in</sub>=0, and the operation code is for "ADD", the ALU's adder circuit would compute F = A + B = 0101 + 0011 = 1000. The status flags would be set accordingly (e.g., C<sub>out</sub>=0, Z=0, S=1 if MSB is sign, V=0).</p>
+                    </div>
+                </div>
+            </details>
+            
+        </section>
+        <section id="3markAnswers" style="display:none;"> <h2>3-Mark Question Themes</h2>
+             <p class="text-center text-gray-500 p-8">Detailed answers for 3-mark questions will be added here.</p>
+        </section>
+    </div>
+
+    <script>
+        // Script to make answers collapsible
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailsElements = document.querySelectorAll('details.qa-block');
+            detailsElements.forEach(detail => {
+                // Optional: If you want only one open at a time
+                // detail.addEventListener('toggle', event => {
+                //     if (detail.open) {
+                //         detailsElements.forEach(otherDetail => {
+                //             if (otherDetail !== detail) {
+                //                 otherDetail.removeAttribute('open');
+                //             }
+                //         });
+                //     }
+                // });
+            });
+            console.log("4-Mark Q&A Page Loaded with collapsible answers.");
+        });
+    </script>
+</body>
+</html>
